@@ -1,7 +1,15 @@
+import Footer from "@/layout/Footer";
+import Header from "@/layout/Header";
 
 
 export default function Home() {
   return (
-    <div>سلام</div>
+    <div>
+     
+      <div>
+      سلام
+      </div>
+    
+      </div>
   );
 }

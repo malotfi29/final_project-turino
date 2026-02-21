@@ -1,0 +1,134 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px dashed rgba(0, 0, 0, 0.25);
+  padding-top: 2rem;
+  width: 100%;
+}
+
+.footer__inner{
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1rem;
+ 
+}
+
+.footer__container {
+  display: flex;
+  flex-direction: column;
+ 
+  padding-bottom: 1rem;
+ 
+}
+
+.footer h3 {
+  font-size: 22px;
+  font-weight: 500;
+}
+.footer a {
+  font-size: 16px;
+  color: var(--color-text-primary);
+}
+.footer a:hover {
+  color: var(--color-primary);
+}
+
+.footer__container .footer__columns {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 2rem;
+}
+.footer__container .footer__columns ul {
+  list-style: none;
+}
+
+.footer__container .footer__brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4rem;
+}
+.footer__brand .footer__logos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, auto);
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer .footer__support {
+  font-size: 14px;
+  direction: ltr;
+}
+
+.footer .footer__copyright {
+  font-size: 12px;
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  width: 100%;
+  padding: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.footer .footer__logos .img {
+  width: 35px;
+  height: 38px;
+  transition: 0.3s ease;
+}
+.footer .footer__logos .img:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+.footer .footer__support .img {
+  width: 100px;
+  height: 30px;
+}
+
+@media screen and (min-width: 560px) {
+  .footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.25);
+  }
+  .footer__container {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .footer__container .footer__brand {
+    flex-direction: column-reverse;
+  }
+  .footer__brand .footer__logos {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .footer h3 {
+    font-size: 24px;
+  }
+  .footer a {
+    font-size: 18px;
+  }
+  .footer .footer__support .img {
+    width: 146px;
+    height: 44px;
+  }
+  .footer .footer__logos .img {
+    width: 68px;
+    height: 74px;
+  }
+  .footer .footer__support {
+    font-size: 15px;
+    direction: ltr;
+  }
+  .footer .footer__copyright {
+    font-size: 15px;
+  }
+  .footer__container .footer__columns {
+    gap: 4rem;
+  }
+  
+}

@@ -1,0 +1,98 @@
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  
+}
+
+.header .icons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.header .menu {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+  display: none;
+}
+.header .img {
+  width: 10rem;
+  height: 3rem;
+}
+
+.header ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+  gap: 4rem;
+}
+
+.header ul li a {
+  font-size: 14px;
+  color: var(--color-text-primary);
+  display: block;
+  transition: color 0.2s ease;
+}
+
+.header .webButton {
+  align-items: center;
+
+  gap: 4px;
+  display: none;
+}
+.header button span {
+  font-size: 12px;
+}
+.header .mobileButton{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header .userMobile{
+  color: var(--color-primary);
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+@media screen and (min-width: 768px) {
+  .header .icons {
+    display: none;
+  }
+  .header .menu,
+  .header .webButton {
+    display: flex;
+  }
+  .header .mobileButton{
+    display: none;
+  }
+  .header ul li a:hover {
+    color: var(--color-primary);
+  }
+  .header .userMobile{
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .header .img {
+    width: 14.6rem;
+    height: 4.4rem;
+  }
+  .header ul a {
+    font-size: 16px;
+  }
+  .header .menu {
+    gap: 10rem;
+  }
+  .header button span {
+    font-size: 14px;
+  }
+}
