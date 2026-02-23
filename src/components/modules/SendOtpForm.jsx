@@ -1,7 +1,8 @@
 "use client";
 
-import Loading from "@/ui/Loading";
+
 import TextInput from "@/ui/TextInput";
+import { toPersianNumbers } from "@/utils/toPersionNumber";
 
 
 function SendOtpForm({ register, onSubmit, isSendingOtp, errors }) {
@@ -13,13 +14,14 @@ function SendOtpForm({ register, onSubmit, isSendingOtp, errors }) {
         errors={errors}
         name="mobile"
         required
+        placeholder={toPersianNumbers("09123456789")}
       />
-
-      {isSendingOtp ? (
+<button type="submit">ارسال کد تایید</button>
+      {/* {isSendingOtp ? (
         <Loading />
       ) : (
         <button type="submit">ارسال کد تایید</button>
-      )}
+      )} */}
     </form>
   );
 }

@@ -1,0 +1,46 @@
+.container {
+  position: relative;
+  width: 100%;
+  /* margin: 10px; */
+}
+
+.comboInput {
+  width: 100%;
+ 
+}
+
+.comboOptions {
+  position: absolute;
+  margin-top: 1rem;
+  max-height: 60rem;
+  width: 100%;
+  overflow: auto;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 50;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+.comboOptions p {
+  font-size: 13px;
+  color: rgba(40, 40, 40, 0.7);
+  background-color: rgba(248, 248, 248, 1);
+  padding: 0.5rem;
+  font-weight: bold;
+}
+.comboOption {
+  color: rgba(40, 40, 40, 1);
+  font-size: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  background-color:inherit;
+}
+
+.comboOption[data-headlessui-state~="active"] {
+  color: white;
+  background-color: var(--color-primary);
+}
+
+.notFound {
+  padding: 3rem;
+  color: gray;
+}

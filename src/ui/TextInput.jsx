@@ -1,12 +1,12 @@
-import { toPersianNumbers } from "@/utils/toPersionNumber";
+
 import styles from "./TextInput.module.css";
 
-function TextInput({ label, name, register,required,errors,type="text" }) {
-  const placeHolderValue=toPersianNumbers("09123456789")
+function TextInput({ label, name, register,required,errors,type="text",placeholder }) {
+  
   return (
     <div className={styles.container}>
       <label htmlFor={name}>{label} {required && <span style={{color:"red"}}>*</span>}</label>
-      <input {...register(name)} id={name} type={type}  placeholder={placeHolderValue} />
+      <input {...register(name)} id={name} type={type}  placeholder={placeholder} />
       {errors && errors[name] && (
         <span className={styles.error}>
           {errors[name]?.message}

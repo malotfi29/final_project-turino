@@ -1,0 +1,27 @@
+.container .banner{
+    width: 100%;
+    height: clamp(11rem,20%,35rem);
+}
+
+
+.input{
+    width: 100%;
+    border: 1px solid red;
+}
+
+.search{
+    max-width: 1200px;
+    margin: auto;
+padding: 10px;
+}
+.search h2{
+    text-align: center;
+    width: 100%;
+    font-size: clamp(16px,4vw,24px);
+    font-weight: 400;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+.search h2 span{
+    color: var(--color-primary);
+}

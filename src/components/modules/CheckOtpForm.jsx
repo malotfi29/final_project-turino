@@ -8,8 +8,6 @@ import { checkOtp } from "@/services/authService";
 import toast from "react-hot-toast";
 import { toPersianNumbers } from "@/utils/toPersionNumber";
 import Cookies from "js-cookie";
-import Loading from "@/ui/Loading";
-
 
 const RESEND_TIME = 90;
 
@@ -69,8 +67,8 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
           <p onClick={onResendHandler}>ارسال مجدد کد تایید</p>
         )}
       </div>
-
-      {isPending ? <Loading /> : <button type="submit">ورود به تورینو</button>}
+      <button type="submit">ورود به تورینو</button>
+      {/* {isPending ? <Loading /> : <button type="submit">ورود به تورینو</button>} */}
     </form>
   );
 }
