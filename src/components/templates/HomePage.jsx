@@ -2,6 +2,12 @@ import Image from "next/image";
 import styles from "./HomePage.module.css";
 import SearchTour from "@/modules/SearchTour";
 import AllToures from "@/modules/AllToures";
+import { Button } from "@headlessui/react";
+import CallIcon from "@/public/icons/CallIcon";
+import { toPersianNumbers } from "@/utils/toPersionNumber";
+import FillCallIcon from "@/public/icons/FillCallIcon";
+import PhoneContainer from "@/modules/PhoneContainer";
+import WhyTorino from "@/modules/WhyTorino";
 
 function HomePage() {
   return (
@@ -14,12 +20,18 @@ function HomePage() {
         alt="banner"
       />
       <div className={styles.search}>
-        <h2><span>تورینو</span> برگزار کننده بهترین تور های داخلی و خارجی</h2>
+        <h2>
+          <span>تورینو</span> برگزار کننده بهترین تور های داخلی و خارجی
+        </h2>
         <SearchTour />
       </div>
-      <div>
+      <div className={styles.toures}>
         <h2>همه ی تورها</h2>
-        <AllToures/>
+        <AllToures />
+      </div>
+      <PhoneContainer />
+      <div className={styles.whyTorino}>
+        <WhyTorino/>
       </div>
     </div>
   );

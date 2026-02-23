@@ -1,7 +1,7 @@
 "use client";
 import { useToures } from "@/utils/useQueries";
 import styles from "./AllToures.module.css";
-import Image from "next/image";
+import Tour from "./Tour";
 
 function AllToures() {
   const { data, isPending } = useToures();
@@ -12,19 +12,7 @@ function AllToures() {
       {isPending ? (
         <p>Loading</p>
       ) : (
-        data.map((tour) => (
-          <div className={styles.tour} key={tour.id}>
-            <div className={styles.tourBody}>
-              <Image
-                src={tour.image}
-                width={1000}
-                height={700}
-                alt={tour.title}
-              />
-            </div>
-            <div className={styles.tourFooter}></div>
-          </div>
-        ))
+        data.map((tour) => <Tour tour={tour} key={tour.id} />)
       )}
     </div>
   );

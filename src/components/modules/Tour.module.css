@@ -1,0 +1,57 @@
+.tour {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tourImg {
+  width: 100%;
+  height: auto;
+}
+.desc {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.desc .title {
+  font-size: 22px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 1);
+}
+.desc div {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(40, 40, 40, 0.7);
+}
+.tourFooter {
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tourFooter button {
+  background-color: var(--color-primary);
+  color: white;
+  padding: 0 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.tourFooter p{
+    font-size: 12px;
+}
+.tourFooter p span{
+    font-weight: 500;
+    font-size: 14px;
+    color: rgb(109, 146, 238);
+}
+
+/* @media screen and (min-width:768px) {
+    .tourImg{
+        width: 25rem;
+    }
+} */
