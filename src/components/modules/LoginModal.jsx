@@ -5,12 +5,11 @@ import { useState } from "react";
 import SendOtpForm from "./SendOtpForm";
 import CheckOtpForm from "./CheckOtpForm";
 import { useForm } from "react-hook-form";
-import { getOtp } from "@/services/authService";
-import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { sentOtpSchema } from "@/utils/validationSchema";
 import ArrowLeft from "@/public/icons/ArrowLeft";
+import axios from "axios";
 
 function LoginModal({ openLogin, setOpenLogin }) {
   const [step, setStep] = useState(1);
@@ -22,22 +21,16 @@ function LoginModal({ openLogin, setOpenLogin }) {
     formState: { errors },
   } = useForm({ resolver: yupResolver(sentOtpSchema) });
 
-  const {
-    isPending: isSendingOtp,
-    mutateAsync,
-  } = useMutation({
-    mutationFn: getOtp,
-  });
-
   const sendOtpHandler = async (mobile) => {
     try {
-      const { data } = await mutateAsync(mobile);
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/send-otp`,
+        mobile
+      );
       setStep(2);
-      toast.success(`کد اعتبار سنجی شما ${data.code}`);
+      toast.success(`کد اعتبار سنجی شما ${res.data.code}`);
     } catch (error) {
       toast.error(error?.response?.data?.error);
-      
-      
     }
   };
 
@@ -69,11 +62,14 @@ function LoginModal({ openLogin, setOpenLogin }) {
           <SendOtpForm
             register={register}
             onSubmit={handleSubmit(sendOtpHandler)}
-            isSendingOtp={isSendingOtp}
             errors={errors}
           />
         ) : (
-          <CheckOtpForm mobile={getValues("mobile")} resendOtp={sendOtpHandler} setOpenLogin={setOpenLogin} />
+          <CheckOtpForm
+            mobile={getValues("mobile")}
+            resendOtp={sendOtpHandler}
+            setOpenLogin={setOpenLogin}
+          />
         )}
       </div>
     </div>

@@ -7,7 +7,7 @@ import OTPInput from "react-otp-input";
 import { checkOtp } from "@/services/authService";
 import toast from "react-hot-toast";
 import { toPersianNumbers } from "@/utils/toPersionNumber";
-import Cookies from "js-cookie";
+import axios from "axios";
 
 const RESEND_TIME = 90;
 
@@ -15,9 +15,6 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
   const [code, setCode] = useState("");
   const [time, setTime] = useState(RESEND_TIME);
 
-  const { isPending, mutateAsync } = useMutation({
-    mutationFn: checkOtp,
-  });
 
   useEffect(() => {
     const timer = time > 0 && setInterval(() => setTime((t) => t - 1), 1000);
@@ -29,9 +26,15 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
   const checkOtpHandler = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await mutateAsync({ mobile, code });
-      Cookies.set("accessToken", data.accessToken, { expires: 7 });
-      Cookies.set("refreshToken", data.refreshToken, { expires: 30 });
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/check-otp`, {
+        mobile,
+        code,
+      });
+      const data = res.data;
+      await axios.post("/api/auth/setToken", {
+        accessToken: data.accessToken,
+        refreshToken: data.refreshToken,
+      });
       localStorage.setItem("user", JSON.stringify(data.user));
       setOpenLogin(false);
     } catch (error) {

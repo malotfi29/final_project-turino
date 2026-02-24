@@ -5,9 +5,9 @@ import { createContext, useState, useEffect, useContext } from "react";
 
 const AuthContext = createContext();
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState("");
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const storedUser = JSON.parse(localStorage.getItem("user")) || "";
     const token = Cookies.get("accessToken");
     if (storedUser && token) {
       setUser(storedUser);

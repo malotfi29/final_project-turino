@@ -3,17 +3,20 @@ import SearchIcon from "@/public/icons/SearchIcon";
 import styles from "./SearchTour.module.css";
 import LocationIcon from "@/public/icons/LocationIcon";
 import ComboInput from "@/ui/ComboInput";
-import { useToures } from "@/utils/useQueries";
 import { useEffect, useRef, useState } from "react";
 import { Calendar, CalendarProvider } from "zaman";
 import CalenderIcon from "@/public/icons/CalenderIcon";
 
-function SearchTour() {
-  const { data } = useToures();
-  const [origin, setOrigin] = useState(null);
-  const [destination, setDestination] = useState(null);
+function SearchTour({ data }) {
+  const [search, setSearch] = useState({
+    origin: "",
+    destination: "",
+    value: { from:null, to: null },
+  });
+  // const [origin, setOrigin] = useState(null);
+  // const [destination, setDestination] = useState(null);
+  // const [value, setValue] = useState([null, null]);
   const [showDate, setShowDate] = useState(false);
-  const [value, setValue] = useState([null, null]);
   const wrapperRef = useRef(null);
 
   useEffect(() => {
@@ -29,6 +32,11 @@ function SearchTour() {
     };
   }, [wrapperRef]);
 
+  const handleSearch=()=>{
+    console.log(search);
+    
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.comboContainer}>
@@ -36,8 +44,8 @@ function SearchTour() {
         <ComboInput
           label="مبدا"
           data={data}
-          value={origin}
-          onChange={setOrigin}
+          value={search.origin}
+          onChange={(val) => setSearch((prev) => ({ ...prev, origin: val }))}
         />
       </div>
       <div className={styles.comboContainer}>
@@ -45,8 +53,8 @@ function SearchTour() {
         <ComboInput
           label="مقصد"
           data={data}
-          value={destination}
-          onChange={setDestination}
+          value={search.destination}
+          onChange={(val) => setSearch((prev) => ({ ...prev, destination: val }))}
         />
       </div>
       <div className={styles.showDateBtn} ref={wrapperRef}>
@@ -63,7 +71,7 @@ function SearchTour() {
             <CalendarProvider locale="fa" round="x4" accentColor="#6374ae">
               <Calendar
                 defaultValue={new Date()}
-                onChange={(e) => setValue(e.from, e.to)}
+                onChange={range=>setSearch((prev)=>({...prev,value:range}))}
                 weekends={[6]}
                 from={new Date()}
                 to={new Date().setDate(new Date().getDate() + 3)}
@@ -73,7 +81,7 @@ function SearchTour() {
           </div>
         ) : null}
       </div>
-      <button className={styles.searchBtn}>جستجو</button>
+      <button className={styles.searchBtn} onClick={handleSearch}>جستجو</button>
     </div>
   );
 }
