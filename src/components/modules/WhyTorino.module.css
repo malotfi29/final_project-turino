@@ -1,0 +1,54 @@
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10rem;
+    position: relative;
+   
+}
+.desc h1{
+    font-size: 40px;
+font-weight: 400;
+}
+.desc h1 span{
+    color: var(--color-primary);
+}
+.desc h2{
+    font-size: 28px;
+}
+.desc p{
+    max-width: 50%;
+    font-size: 20px;
+    color: rgba(40, 40, 40, 1);
+}
+.showPictures{
+    
+}
+.paginatePictures{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 2rem;
+}
+.pagination{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: yellow;
+}
+.pagination p{
+    font-size: 24px;
+}
+.pagination button{
+    cursor: pointer;
+    background-color: inherit;
+}
+.img{
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: clamp(25rem,40%,38rem);
+    height: clamp(28rem,40%,47rem);
+}

@@ -30,8 +30,8 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
     e.preventDefault();
     try {
       const { data } = await mutateAsync({ mobile, code });
-      Cookies.set("accessToken", data.accessToken, { expires: 1 });
-      Cookies.set("refreshToken", data.refreshToken, { expires: 7 });
+      Cookies.set("accessToken", data.accessToken, { expires: 7 });
+      Cookies.set("refreshToken", data.refreshToken, { expires: 30 });
       localStorage.setItem("user", JSON.stringify(data.user));
       setOpenLogin(false);
     } catch (error) {
