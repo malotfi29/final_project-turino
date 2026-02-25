@@ -7,15 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { Calendar, CalendarProvider } from "zaman";
 import CalenderIcon from "@/public/icons/CalenderIcon";
 
-function SearchTour({ data }) {
-  const [search, setSearch] = useState({
-    origin: "",
-    destination: "",
-    value: { from:null, to: null },
-  });
-  // const [origin, setOrigin] = useState(null);
-  // const [destination, setDestination] = useState(null);
-  // const [value, setValue] = useState([null, null]);
+function SearchTour({ data, search, setSearch, onSearch }) {
   const [showDate, setShowDate] = useState(false);
   const wrapperRef = useRef(null);
 
@@ -31,11 +23,6 @@ function SearchTour({ data }) {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [wrapperRef]);
-
-  const handleSearch=()=>{
-    console.log(search);
-    
-  }
 
   return (
     <div className={styles.container}>
@@ -54,7 +41,9 @@ function SearchTour({ data }) {
           label="مقصد"
           data={data}
           value={search.destination}
-          onChange={(val) => setSearch((prev) => ({ ...prev, destination: val }))}
+          onChange={(val) =>
+            setSearch((prev) => ({ ...prev, destination: val }))
+          }
         />
       </div>
       <div className={styles.showDateBtn} ref={wrapperRef}>
@@ -71,7 +60,9 @@ function SearchTour({ data }) {
             <CalendarProvider locale="fa" round="x4" accentColor="#6374ae">
               <Calendar
                 defaultValue={new Date()}
-                onChange={range=>setSearch((prev)=>({...prev,value:range}))}
+                onChange={(range) =>
+                  setSearch((prev) => ({ ...prev, value: range }))
+                }
                 weekends={[6]}
                 from={new Date()}
                 to={new Date().setDate(new Date().getDate() + 3)}
@@ -81,7 +72,9 @@ function SearchTour({ data }) {
           </div>
         ) : null}
       </div>
-      <button className={styles.searchBtn} onClick={handleSearch}>جستجو</button>
+      <button className={styles.searchBtn} onClick={onSearch}>
+        جستجو
+      </button>
     </div>
   );
 }

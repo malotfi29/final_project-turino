@@ -16,10 +16,10 @@ export default function RootLayout({ children }) {
       <body className={yekan.className}>
         <AuthProvider>
           <QueryClientPro>
-            <Toaster />
             <Layout>{children}</Layout>
           </QueryClientPro>
         </AuthProvider>
+            {/* <Toaster /> */}
       </body>
     </html>
   );
