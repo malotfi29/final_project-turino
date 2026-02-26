@@ -5,7 +5,7 @@ import styles from "./AllToures.module.css";
 import SearchTour from "./SearchTour";
 import Tour from "./Tour";
 import toast from "react-hot-toast";
-import axios from "axios";
+import app from "@/services/httpService";
 
 function AllToures() {
   const [data, setData] = useState([]);
@@ -15,69 +15,37 @@ function AllToures() {
     value: { from: null, to: null },
   });
 
-  // const fetchTours = async () => {
-  //   try {
-  //     const res = await axios.get(
-  //       `${process.env.NEXT_PUBLIC_BASE_URL}
-  //         /api/tour/get`,
-        
-  //     );
-  //     setData(res.data);
-  //   } catch (error) {
-  //     toast.error("خطا در دریافت تورها");
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   async function fetch() {
-  //     try {
-  //       const res = await axios.get(
-  //         `${process.env.NEXT_PUBLIC_BASE_URL}/api/tour/get`
-  //       );
-  //       setData(res.data);
-  //     } catch (error) {
-  //       toast.error(error);
-  //     }
-  //   }
-  //   fetch();
-  // }, []);
-
-
-
   const fetchTours = async () => {
     try {
       const params = new URLSearchParams();
-  
+
       if (search.origin?.id) {
         params.append("originId", search.origin.id);
       }
-  
+
       if (search.destination?.id) {
         params.append("destinationId", search.destination.id);
       }
-  
+
       if (search.value?.from) {
         params.append("startDate", search.value.from.toISOString());
       }
-  
+
       if (search.value?.to) {
-        params.append("endDate", search.value.to.toISOString());
+        params.append("endDate", search.value.totoISOString());
       }
-  
-      const res = await axios.get(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/tour/get?${params.toString()}`
-      );
-  
+
+      const res = await app.get(`/api/tour/get?${params.toString()}`);
+
       setData(res.data);
     } catch (error) {
       toast.error("خطا در دریافت تورها");
     }
   };
 
-  useEffect(()=>{
-    fetchTours()
-  },[])
-
+  useEffect(() => {
+    fetchTours();
+  }, []);
 
   return (
     <div className={styles.container}>

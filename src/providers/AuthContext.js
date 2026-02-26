@@ -1,29 +1,27 @@
 "use client";
 
-import Cookies from "js-cookie";
+import app from "@/services/httpService";
+
+
 import { createContext, useState, useEffect, useContext } from "react";
 
 const AuthContext = createContext();
 export function AuthProvider({ children }) {
   const [user, setUser] = useState("");
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("user")) || "";
-    const token = Cookies.get("accessToken");
-    if (storedUser && token) {
-      setUser(storedUser);
+    async function fetchUser() {
+      try {
+        const res = await app.get(`/api/user/getProfile`, {});
+        setUser(res.data.user);
+      } catch (error) {
+        setUser(null);
+      }
     }
+    fetchUser();
   }, []);
 
-  const logout = () => {
-    Cookies.remove("accessToken");
-    Cookies.remove("refreshToken");
-    localStorage.removeItem("user");
-    setUser(null);
-  };
   return (
-    <AuthContext.Provider value={{ user, setUser, logout }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
   );
 }
 

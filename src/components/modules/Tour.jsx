@@ -6,6 +6,7 @@ import {
   toPersianNumbersWithComma,
 } from "@/utils/toPersionNumber";
 import shortText from "@/utils/shortText";
+import Link from "next/link";
 
 function Tour({ tour }) {
   return (
@@ -36,7 +37,9 @@ function Tour({ tour }) {
         </div>
       </div>
       <div className={styles.tourFooter}>
-        <button>رزرو</button>
+        <Link href={`/tourDetails/${tour.id}`} >
+        <button >رزرو</button>
+        </Link>
         <p>
           <span>{toPersianNumbersWithComma(tour.price)}</span> تومان
         </p>

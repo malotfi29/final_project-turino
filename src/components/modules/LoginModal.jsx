@@ -5,11 +5,11 @@ import { useState } from "react";
 import SendOtpForm from "./SendOtpForm";
 import CheckOtpForm from "./CheckOtpForm";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { sentOtpSchema } from "@/utils/validationSchema";
 import ArrowLeft from "@/public/icons/ArrowLeft";
-import axios from "axios";
+import app from "@/services/httpService";
 
 function LoginModal({ openLogin, setOpenLogin }) {
   const [step, setStep] = useState(1);
@@ -23,14 +23,13 @@ function LoginModal({ openLogin, setOpenLogin }) {
 
   const sendOtpHandler = async (mobile) => {
     try {
-      const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_BASE_URL}/api/auth/send-otp`,
-        mobile
-      );
+      const res = await app.post(`/api/auth/send-otp`, mobile);
+
       setStep(2);
-      toast.success(`کد اعتبار سنجی شما ${res.data.code}`);
+      toast.success(`کد اعتبار سنجی شما ${res.data.code}`,{style:{fontSize:"14px"}});
     } catch (error) {
-      toast.error(error?.response?.data?.error);
+      toast.error(error);
+      console.log(error);
     }
   };
 
@@ -38,6 +37,7 @@ function LoginModal({ openLogin, setOpenLogin }) {
 
   return (
     <div className={styles.container}>
+     
       <div
         className={styles.backdrop}
         onClick={() => setOpenLogin(false)}
@@ -72,6 +72,7 @@ function LoginModal({ openLogin, setOpenLogin }) {
           />
         )}
       </div>
+      <Toaster/>
     </div>
   );
 }

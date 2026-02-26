@@ -13,10 +13,12 @@ import LoginModal from "@/modules/LoginModal";
 import { useAuth } from "@/providers/AuthContext";
 import { toPersianNumbers } from "@/utils/toPersionNumber";
 import ArrowDown from "@/public/icons/ArrowDown";
+import ProfileModal from "@/modules/ProfileModal";
 
 function Header() {
   const [showMenu, setShowMenu] = useState(false);
   const [openLogin, setOpenLogin] = useState(false);
+  const [openProfile, setOpenProfile] = useState(false);
   const { user } = useAuth();
 
   return (
@@ -45,10 +47,19 @@ function Header() {
         </ul>
       </div>
       {!!user ? (
-        <div className={styles.userMobile}>
-          <ProfileIcon />
-          <span>{toPersianNumbers(user.mobile)}</span>
-          <ArrowDown />
+        <div>
+          <div
+            className={styles.userMobile}
+            onClick={() => setOpenProfile((is) => !is)}
+          >
+            <ProfileIcon />
+            <span>{toPersianNumbers(user.mobile)}</span>
+            <ArrowDown />
+          </div>
+          <ProfileModal
+            openProfile={openProfile}
+            setOpenProfile={setOpenProfile}
+          />
         </div>
       ) : (
         <div>

@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import Footer from "./Footer"
 import Header from "./Header"
 
@@ -11,6 +12,7 @@ function Layout({children}) {
         {children}
       </div>
       <Footer/>
+      <Toaster />
     </div>
   )
 }

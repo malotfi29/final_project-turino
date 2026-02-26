@@ -6,11 +6,29 @@ export async function POST(req) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
-    credentials: "include",
+    
   });
-  console.log(res);
+ 
+  if(!res.ok){
+    return NextResponse.json({message:"خطای ورود"},{status:401})
+  }
   
   const data = await res.json();
+  const{accessToken,refreshToken}=data
+  const response = NextResponse.json({ success: true });
+  response.cookies.set("accessToken", accessToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+    path: "/",
+  });
+  response.cookies.set("refreshToken", refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "strict",
+    path: "/",
+  });
+  return response;
   
-  return NextResponse.json(data);
+  
 }
