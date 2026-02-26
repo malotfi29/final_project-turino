@@ -6,13 +6,14 @@ import SearchTour from "./SearchTour";
 import Tour from "./Tour";
 import toast from "react-hot-toast";
 import app from "@/services/httpService";
+import { toUTCStartOfDay } from "@/utils/toUTCStartOfDay";
 
 function AllToures() {
   const [data, setData] = useState([]);
   const [search, setSearch] = useState({
     origin: "",
     destination: "",
-    value: { from: null, to: null },
+    value: {},
   });
 
   const fetchTours = async () => {
@@ -28,11 +29,17 @@ function AllToures() {
       }
 
       if (search.value?.from) {
-        params.append("startDate", search.value.from.toISOString());
+        params.append(
+          "startDate",
+          toUTCStartOfDay(search.value.from).toISOString()
+        );
       }
 
       if (search.value?.to) {
-        params.append("endDate", search.value.totoISOString());
+        params.append(
+          "endDate",
+          toUTCStartOfDay(search.value.to).toISOString()
+        );
       }
 
       const res = await app.get(`/api/tour/get?${params.toString()}`);
@@ -62,9 +69,9 @@ function AllToures() {
       </div>
       <h2 className={styles.title}>همه ی تورها</h2>
       <div className={styles.TouresContainer}>
-        {data
+        {!!data.length
           ? data.map((tour) => <Tour tour={tour} key={tour.id} />)
-          : "loading"}
+          : <p>تور مورد نظر یافت نشد</p>}
       </div>
     </div>
   );

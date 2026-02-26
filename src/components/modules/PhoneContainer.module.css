@@ -9,7 +9,7 @@
   }
   
   .phoneContainer .img {
-    z-index: 1000;
+    z-index: 100;
   
     width: 19rem;
     height: 15rem;

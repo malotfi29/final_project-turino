@@ -22,8 +22,8 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
     };
   }, [time]);
 
-  const checkOtpHandler = async (e) => {
-    e.preventDefault();
+  const checkOtpHandler = async () => {
+    // e.preventDefault();
     try {
       const res = await app.post(`/api/auth/check-otp`, {
         mobile,
@@ -42,6 +42,12 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
     resendOtp({ mobile: mobile });
     setTime(RESEND_TIME);
   };
+
+  useEffect(()=>{
+    if(code.length===6){
+      checkOtpHandler()
+    }
+  },[code])
 
   return (
 <div>

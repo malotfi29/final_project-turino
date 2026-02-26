@@ -1,5 +1,6 @@
 .tour {
   width: 100%;
+  max-width: 500px;
   border: 1px solid rgba(0, 0, 0, 0.12);
   border-radius: 10px;
   overflow: hidden;

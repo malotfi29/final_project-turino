@@ -2,9 +2,9 @@ import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const cookieStore = cookies();
-  console.log((await cookieStore).getAll());
-  const accessToken = (await cookieStore).get("accessToken")?.value;
+  const cookieStore =await cookies();
+
+  const accessToken =cookieStore.get("accessToken")?.value;
 
   if (!accessToken) {
     return NextResponse.json(
@@ -23,6 +23,8 @@ export async function GET() {
         { status: 401 }
       );
     }
+
+    
     const user = await res.json();
     return NextResponse.json({ user });
   } catch (error) {

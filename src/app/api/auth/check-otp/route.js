@@ -6,29 +6,28 @@ export async function POST(req) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
-    
   });
- 
-  if(!res.ok){
-    return NextResponse.json({message:"خطای ورود"},{status:401})
+
+  if (!res.ok) {
+    return NextResponse.json({ message: "خطای ورود" }, { status: 401 });
   }
-  
+
   const data = await res.json();
-  const{accessToken,refreshToken}=data
+  const { accessToken, refreshToken } = data;
   const response = NextResponse.json({ success: true });
   response.cookies.set("accessToken", accessToken, {
     httpOnly: true,
     secure: true,
     sameSite: "strict",
     path: "/",
+    maxAge: 7 * 24 * 60 * 60,
   });
   response.cookies.set("refreshToken", refreshToken, {
     httpOnly: true,
     secure: true,
     sameSite: "strict",
     path: "/",
+    maxAge: 30 * 24 * 60 * 60,
   });
   return response;
-  
-  
 }

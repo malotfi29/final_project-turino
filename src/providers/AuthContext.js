@@ -12,6 +12,7 @@ export function AuthProvider({ children }) {
     async function fetchUser() {
       try {
         const res = await app.get(`/api/user/getProfile`, {});
+        
         setUser(res.data.user);
       } catch (error) {
         setUser(null);
@@ -19,6 +20,7 @@ export function AuthProvider({ children }) {
     }
     fetchUser();
   }, []);
+
 
   return (
     <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>

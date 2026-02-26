@@ -21,6 +21,9 @@ function Header() {
   const [openProfile, setOpenProfile] = useState(false);
   const { user } = useAuth();
 
+
+  
+
   return (
     <div className={styles.header}>
       <div className={styles.icons}>
@@ -47,7 +50,7 @@ function Header() {
         </ul>
       </div>
       {!!user ? (
-        <div>
+        <div className={styles.mobileContainer}>
           <div
             className={styles.userMobile}
             onClick={() => setOpenProfile((is) => !is)}

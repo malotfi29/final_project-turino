@@ -4,8 +4,14 @@ import styles from "./SearchTour.module.css";
 import LocationIcon from "@/public/icons/LocationIcon";
 import ComboInput from "@/ui/ComboInput";
 import { useEffect, useRef, useState } from "react";
-import { Calendar, CalendarProvider } from "zaman";
+import { Calendar, CalendarProvider, DatePicker } from "zaman";
 import CalenderIcon from "@/public/icons/CalenderIcon";
+import { normalizeDate } from "@/utils/normalizeDate";
+
+const formatDate = (date) => {
+  if (!date) return "";
+  return date.toLocaleDateString("fa-IR");
+};
 
 function SearchTour({ data, search, setSearch, onSearch }) {
   const [showDate, setShowDate] = useState(false);
@@ -49,7 +55,12 @@ function SearchTour({ data, search, setSearch, onSearch }) {
       <div className={styles.showDateBtn} ref={wrapperRef}>
         <button onClick={() => setShowDate((is) => !is)}>
           <CalenderIcon />
-          <span>تاریخ</span>
+
+          <span>
+            {search.value.from && search.value.to
+              ? ` ${formatDate(search.value.from)} - ${formatDate(search.value.to)}`
+              : "تاریخ"}
+          </span>
         </button>
         {showDate ? (
           <div
@@ -60,12 +71,20 @@ function SearchTour({ data, search, setSearch, onSearch }) {
             <CalendarProvider locale="fa" round="x4" accentColor="#6374ae">
               <Calendar
                 defaultValue={new Date()}
-                onChange={(range) =>
-                  setSearch((prev) => ({ ...prev, value: range }))
-                }
+                onChange={(range) => {
+                  const from = normalizeDate(range?.from);
+                  const to = normalizeDate(range?.to);
+                  setSearch((prev) => ({
+                    ...prev,
+                    value: { from, to },
+                  }));
+                  if (from && to) {
+                    setShowDate(false);
+                  }
+                }}
                 weekends={[6]}
                 from={new Date()}
-                to={new Date().setDate(new Date().getDate() + 3)}
+                to={new Date()}
                 range
               />
             </CalendarProvider>
