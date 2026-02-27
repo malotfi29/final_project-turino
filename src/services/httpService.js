@@ -17,21 +17,21 @@ app.interceptors.response.use(
       originalRequest._retry = true;
 
       try {
-        const refreshResponse = await axios.post(
+        const refreshResponse = await app.post(
           "/api/auth/refresh",
-          {},
-          { withCredentials: true }
+          // {},
+          // { withCredentials: true }
         );
 
         if (refreshResponse.status === 200) {
           return app(originalRequest);
         }
       } catch (refreshError) {
-        return Promise.reject(refreshError);
+        return Promise.reject({message:"لطفا وارد حساب کاربری خود شوید",status:401});
       }
     }
 
-    return Promise.reject(error);
+    return Promise.reject({status:error.response?.status,message:error.response?.data?.error || "خطایی رخ داده است"});
   }
 );
 

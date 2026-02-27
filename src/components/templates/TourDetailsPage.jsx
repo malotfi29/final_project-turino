@@ -18,19 +18,28 @@ import Secure from "@/public/icons/Secure";
 import app from "@/services/httpService";
 import toast from "react-hot-toast";
 
+const vehicles={
+  bus:"اتوبوس",
+  ship:"کشتی",
+  train:"قطار",
+  airplain:"هواپیما",
+  SUV:"اتومبیل استیشن"
+}
+
 function TourDetailsPage({ data }) {
   const duration = getDuration(data.startDate, data.endDate);
 
   const handleBookingTour = async () => {
     try {
       const res = await app.put("/api/tour/booking", data.id);
-      console.log(res);
 
       if (res.status === 200) {
-        toast.success(res.data.data.message);
+        toast.success(res.data.data.message, { style: { fontSize: "14px" } });
       }
     } catch (error) {
       console.log(error);
+      
+      toast.error(error.message, { style: { fontSize: "14px" } });
     }
   };
 
@@ -106,7 +115,7 @@ function TourDetailsPage({ data }) {
               <Bus />
               حمل و نقل
             </p>
-            <span>{data.fleetVehicle}</span>
+            <span>{vehicles[data.fleetVehicle]}</span>
           </div>
           <div>
             <p>

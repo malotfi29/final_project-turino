@@ -30,6 +30,8 @@ export async function PUT(req) {
     const data = await res.json();
     return NextResponse.json({ data });
   } catch (error) {
+    console.log("erre",error);
+    
     return NextResponse.json(
       { error: "خطا در برقراری ارتباط" },
       { status: 500 }

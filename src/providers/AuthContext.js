@@ -11,7 +11,8 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     async function fetchUser() {
       try {
-        const res = await app.get(`/api/user/getProfile`, {});
+        const res = await app.get(`/api/user/getProfile`);
+      
         
         setUser(res.data.user);
       } catch (error) {

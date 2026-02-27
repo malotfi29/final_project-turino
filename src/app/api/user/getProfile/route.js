@@ -14,10 +14,12 @@ export async function GET() {
   }
 
   try {
-    const res = await fetch(`${process.env.BASE_URL_SERVER}/user/profile`, {
+    const res = await fetch(`${process.env.BASE_URL_SERVER}/user/profile`
+      , {
       headers: { Authorization: `Bearer ${accessToken}` },
-    });
-    if (!res.ok) {
+    }
+  );
+    if (res.status===401) {
       return NextResponse.json(
         { message: "لطفا وارد حساب کاربری خود شوید" },
         { status: 401 }
@@ -26,7 +28,9 @@ export async function GET() {
 
     
     const user = await res.json();
+    
     return NextResponse.json({ user });
+
   } catch (error) {
     return NextResponse.json(
       { message: "خطا در برقراری ارتباط" },
