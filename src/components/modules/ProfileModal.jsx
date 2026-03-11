@@ -9,20 +9,20 @@ import app from "@/services/httpService";
 
 function ProfileModal({ openProfile, setOpenProfile }) {
   const { user } = useAuth();
-  
-  const logoutHandler=async()=>{
+
+  const logoutHandler = async () => {
     try {
-        const res=await app.post("/api/user/logout")
-        window.location.reload()
+      const res = await app.post("/api/user/logout");
+      window.location.reload();
     } catch (error) {
-        console.log(error);
-        
+      console.log(error);
     }
-   
-  }
+  };
 
   if (!openProfile) return;
   return (
+    <div>
+      <div className={styles.backdrop} onClick={()=>setOpenProfile(is=>!is)} ></div>
     <div className={styles.container}>
       <p className={styles.number}>
         <span>
@@ -40,8 +40,9 @@ function ProfileModal({ openProfile, setOpenProfile }) {
         <span>
           <Logout />
         </span>
-          خروج از حساب کاربری
+        خروج از حساب کاربری
       </p>
+    </div>
     </div>
   );
 }

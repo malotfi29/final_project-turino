@@ -7,6 +7,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { toPersianNumbers } from "@/utils/toPersionNumber";
 import app from "@/services/httpService";
 import { useRouter } from "next/navigation";
+import Skeleton from "@/ui/Skeleton";
 
 const RESEND_TIME = 90;
 
@@ -75,6 +76,7 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
           <p onClick={onResendHandler}>ارسال مجدد کد تایید</p>
         )}
       </div>
+      
       <button type="submit">ورود به تورینو</button>
       {/* {isPending ? <Loading /> : <button type="submit">ورود به تورینو</button>} */}
     </form>

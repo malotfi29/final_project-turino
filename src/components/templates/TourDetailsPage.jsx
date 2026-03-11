@@ -17,17 +17,19 @@ import ProfileUser from "@/public/icons/ProfileUser";
 import Secure from "@/public/icons/Secure";
 import app from "@/services/httpService";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-const vehicles={
-  bus:"اتوبوس",
-  ship:"کشتی",
-  train:"قطار",
-  airplain:"هواپیما",
-  SUV:"اتومبیل استیشن"
-}
+const vehicles = {
+  bus: "اتوبوس",
+  ship: "کشتی",
+  train: "قطار",
+  airplain: "هواپیما",
+  SUV: "اتومبیل استیشن",
+};
 
 function TourDetailsPage({ data }) {
-  const duration = getDuration(data.startDate, data.endDate);
+  const duration = getDuration(data?.startDate, data?.endDate);
+  const router = useRouter();
 
   const handleBookingTour = async () => {
     try {
@@ -35,10 +37,11 @@ function TourDetailsPage({ data }) {
 
       if (res.status === 200) {
         toast.success(res.data.data.message, { style: { fontSize: "14px" } });
+        router.push("/registration");
       }
     } catch (error) {
       console.log(error);
-      
+
       toast.error(error.message, { style: { fontSize: "14px" } });
     }
   };

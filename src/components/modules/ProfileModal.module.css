@@ -1,48 +1,58 @@
-.container{
-    position: absolute;
-    z-index: 100;
-   background-color: rgba(255, 255, 255, 1);
-   width: 15rem;
-   top: 30px;
-   border-radius: 10px;
-   overflow: hidden;
+.container {
+  position: absolute;
+  z-index: 100;
+  background-color: rgba(255, 255, 255, 1);
+  width: 15rem;
+  top: 30px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.number,.profile,.logout{
-    padding: 1rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    font-size: 14px;
-    cursor: pointer;
+.backdrop {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: 1;
 }
 
-.number{
-    
-    background-color: rgba(244, 244, 244, 1);
-}
-.profile{
-    border-bottom: 1px solid rgba(255, 255, 255, 1);
-}
-.logout{
-    color: rgba(212, 0, 0, 1);
-}
-
-.number span{
-    background-color: rgba(217, 217, 217, 1);
-    border-radius: 50%;
+.number,
+.profile,
+.logout {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 14px;
+  cursor: pointer;
 }
 
-.number span,.profile span,.logout span{
-   
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 3px;
+.number {
+  background-color: rgba(244, 244, 244, 1);
+}
+.profile {
+  border-bottom: 1px solid rgba(255, 255, 255, 1);
+}
+.logout {
+  color: rgba(212, 0, 0, 1);
 }
 
-@media screen and (min-width:768px) {
-    .container{
-        width: 20rem;
-    }
+.number span {
+  background-color: rgba(217, 217, 217, 1);
+  border-radius: 50%;
+}
+
+.number span,
+.profile span,
+.logout span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    width: 20rem;
+  }
 }

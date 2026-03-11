@@ -1,9 +1,11 @@
 "use client";
 
+import Skeleton from "@/ui/Skeleton";
+
 import TextInput from "@/ui/TextInput";
 import { toPersianNumbers } from "@/utils/toPersionNumber";
 
-function SendOtpForm({ register, onSubmit, errors }) {
+function SendOtpForm({ register, onSubmit, errors, isSendingOtp }) {
   return (
     <form onSubmit={onSubmit}>
       <TextInput
@@ -14,12 +16,20 @@ function SendOtpForm({ register, onSubmit, errors }) {
         required
         placeholder={toPersianNumbers("09123456789")}
       />
-      <button type="submit">ارسال کد تایید</button>
-      {/* {isSendingOtp ? (
-        <Loading />
-      ) : (
-        <button type="submit">ارسال کد تایید</button>
-      )} */}
+      <button
+        type="submit"
+        disabled={isSendingOtp}
+        style={{
+          background: "rgba(40,167,69,1)",
+          color: "white",
+          height: "44px",
+          borderRadius: "8px",
+          border: "none",
+          width: "100%",
+        }}
+      >
+        {isSendingOtp ? <Skeleton /> : "ارسال کد تایید"}
+      </button>
     </form>
   );
 }

@@ -13,6 +13,7 @@ import app from "@/services/httpService";
 
 function LoginModal({ openLogin, setOpenLogin }) {
   const [step, setStep] = useState(1);
+  const[isSendingOtp,setIsSendingOtp]=useState(false)
 
   const {
     register,
@@ -23,6 +24,7 @@ function LoginModal({ openLogin, setOpenLogin }) {
 
   const sendOtpHandler = async (mobile) => {
     try {
+      setIsSendingOtp(true)
       const res = await app.post(`/api/auth/send-otp`, mobile);
 
       setStep(2);
@@ -30,6 +32,8 @@ function LoginModal({ openLogin, setOpenLogin }) {
     } catch (error) {
       toast.error(error);
       console.log(error);
+    }finally{
+      setIsSendingOtp(false)
     }
   };
 
@@ -63,6 +67,7 @@ function LoginModal({ openLogin, setOpenLogin }) {
             register={register}
             onSubmit={handleSubmit(sendOtpHandler)}
             errors={errors}
+            isSendingOtp={isSendingOtp}
           />
         ) : (
           <CheckOtpForm

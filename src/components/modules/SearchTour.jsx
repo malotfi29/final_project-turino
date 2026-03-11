@@ -4,7 +4,7 @@ import styles from "./SearchTour.module.css";
 import LocationIcon from "@/public/icons/LocationIcon";
 import ComboInput from "@/ui/ComboInput";
 import { useEffect, useRef, useState } from "react";
-import { Calendar, CalendarProvider, DatePicker } from "zaman";
+import { Calendar, CalendarProvider} from "zaman";
 import CalenderIcon from "@/public/icons/CalenderIcon";
 import { normalizeDate } from "@/utils/normalizeDate";
 
