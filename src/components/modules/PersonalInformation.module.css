@@ -1,0 +1,39 @@
+.container {
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 3rem;
+  }
+  
+  .container h2 {
+    font-size: 20px;
+    font-weight: 400;
+  }
+  
+  .container div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding:1rem 2rem;
+    font-size: 16px;
+  }
+  
+  .container button {
+    background-color: inherit;
+    padding: 2rem;
+    cursor: pointer;
+    color: rgb(90, 143, 240);
+    font-size: 16;
+    font-weight: 400;
+  }
+  
+  .inputContainer {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+  

@@ -6,6 +6,7 @@ import ProfileIcon from "@/public/icons/ProfileIcon";
 import ProfileWhite from "@/public/icons/ProfileWhite";
 import Logout from "@/public/icons/Logout";
 import app from "@/services/httpService";
+import Link from "next/link";
 
 function ProfileModal({ openProfile, setOpenProfile }) {
   const { user } = useAuth();
@@ -23,19 +24,21 @@ function ProfileModal({ openProfile, setOpenProfile }) {
   return (
     <div>
       <div className={styles.backdrop} onClick={()=>setOpenProfile(is=>!is)} ></div>
-    <div className={styles.container}>
+    <div className={styles.container} onClick={()=>setOpenProfile(is=>!is)}>
       <p className={styles.number}>
         <span>
           <ProfileIcon color="rgba(105, 105, 105, 1)" width="18" height="18" />
         </span>
         {toPersianNumbers(user.mobile)}{" "}
       </p>
+      <Link href="/profile">
       <p className={styles.profile}>
         <span>
           <ProfileWhite />
         </span>
         اطلاعات حساب کاربری
       </p>
+      </Link>
       <p className={styles.logout} onClick={logoutHandler}>
         <span>
           <Logout />

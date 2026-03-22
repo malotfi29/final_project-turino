@@ -14,6 +14,9 @@
 }
 html {
   font-size: 62.5%;
+ 
+}
+body{
 }
 
 html,
@@ -22,12 +25,8 @@ body {
   background-color: var(--color-bg);
   /* max-width: 1200px; */
   width: 100%;
-  
-
   margin: 0;
 }
-
-
 
 a {
   color: inherit;
@@ -39,7 +38,6 @@ button,
 input,
 textarea {
   font-family: inherit;
-  
 }
 
 .button-primary {
@@ -56,10 +54,26 @@ textarea {
   transform: scale(1.01);
 }
 
+.badge-success {
+  background-color: var(--color-primary);
+  color: rgb(11, 61, 22);
+  border-radius: 15px;
+  width: 100px;
+  padding: 0.5rem;
+}
 
+.badge-pending {
+  background-color: rgb(217, 210, 20);
+  color: rgb(217, 138, 20);
+  border-radius: 15px;
+  width: 100px;
+  padding: 0.5rem;
+}
 
 @keyframes bounce {
-  0%, 80%, 100% {
+  0%,
+  80%,
+  100% {
     transform: scale(0);
   }
   40% {
