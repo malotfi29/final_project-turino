@@ -1,6 +1,8 @@
 import MyTour from "@/modules/MyTour";
 
-function MytoursPage() {
+function MytoursPage({tours}) {
+  
+  
   return (
     <div
       style={{
@@ -12,8 +14,9 @@ function MytoursPage() {
         borderRadius: "8px",
       }}
     >
-      <MyTour />
-      <MyTour />
+      {
+        tours.map(tour=><MyTour tour={tour} key={tour.id} />)
+      }
       
     </div>
   );

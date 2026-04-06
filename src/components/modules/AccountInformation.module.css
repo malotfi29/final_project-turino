@@ -36,3 +36,11 @@
   align-items: center;
   gap: 2rem;
 }
+.inputContainer p{
+  color: rgba(0, 0, 0, 0.5);
+}
+.inputContainer input{
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  padding: 1rem;
+}

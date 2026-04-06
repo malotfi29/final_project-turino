@@ -1,53 +1,29 @@
-import styles from "./TransactionsPage.module.css"
+import {
+  toPersianNumbers,
+  toPersianNumbersWithComma,
+} from "@/utils/toPersionNumber";
+import styles from "./TransactionsPage.module.css";
 
-function TransactionsPage() {
-  const date = new Date().toLocaleDateString("fa-IR");
+function TransactionsPage({ transactions }) {
   return (
     <table className={styles.container}>
       <thead>
         <tr>
-        <th>تاریخ و ساعت</th>
-        <th>مبلغ (تومان)</th>
-        <th>نوع تراکنش</th>
-        <th>شماره سفارش</th>
+          <th>تاریخ و ساعت</th>
+          <th>مبلغ (تومان)</th>
+          <th>نوع تراکنش</th>
+          <th>شماره سفارش</th>
         </tr>
-        
       </thead>
       <tbody>
-
-     
-      <tr>
-        <td>{date}</td>
-        <td>1200000</td>
-        <td>ثبت نام در تور گردشگری</td>
-        <td>سفارش 123456</td>
-      </tr>
-      <tr>
-        <td>{date}</td>
-        <td>1200000</td>
-        <td>ثبت نام در تور گردشگری</td>
-        <td>سفارش 123456</td>
-      </tr><tr>
-        <td>{date}</td>
-        <td>1200000</td>
-        <td>ثبت نام در تور گردشگری</td>
-        <td>سفارش 123456</td>
-      </tr><tr>
-        <td>{date}</td>
-        <td>1200000</td>
-        <td>ثبت نام در تور گردشگری</td>
-        <td>سفارش 123456</td>
-      </tr><tr>
-        <td>{date}</td>
-        <td>1200000</td>
-        <td>ثبت نام در تور گردشگری</td>
-        <td>سفارش 123456</td>
-      </tr><tr>
-        <td>{date}</td>
-        <td>1200000</td>
-        <td>ثبت نام در تور گردشگری</td>
-        <td>سفارش 123456</td>
-      </tr>
+        {transactions.map((t) => (
+          <tr key={t.id}>
+            <td>{new Date(t.createdAt).toLocaleDateString("fa-IR")}</td>
+            <td>{toPersianNumbersWithComma(t.amount)}</td>
+            <td>ثبت نام در تور گردشگری</td>
+            <td>سفارش {toPersianNumbers(t.id.slice(1, 8))}</td>
+          </tr>
+        ))}
       </tbody>
     </table>
   );

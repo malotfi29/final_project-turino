@@ -1,27 +1,64 @@
+import {
+  toPersianNumbers,
+  toPersianNumbersWithComma,
+} from "@/utils/toPersionNumber";
 import styles from "./MyTour.module.css";
 
-function MyTour() {
+const vehicles = {
+  bus: "اتوبوس",
+  ship: "کشتی",
+  train: "قطار",
+  airplane: "هواپیما",
+  SUV: "اتومبیل استیشن",
+};
+
+function MyTour({ tour }) {
+ const tourDate=new Date(tour.endDate)
+ const now = new Date();
   return (
     <div className={styles.container}>
       <div className={styles.desc}>
         <div>
-          <p>تور اقلیم کردستان</p>
-          <p>سفر با هواپیما</p>
+          <p>{tour.title}</p>
+          <p>سفر با {vehicles[tour.fleetVehicle]}</p>
           <p>
-            تهران به سلیمانیه  <span>دوشنبه 14 فروردین 1402</span>
+            {tour.origin.value} به {tour.destination.value}{" "}
+            <span>
+              {new Date(tour.startDate).toLocaleDateString("fa-IR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                weekday: "long",
+              })}
+            </span>
           </p>
           <p>
-            تاریخ برگشت  <span>چهارشنبه 19 فروردین 1402</span>
+            تاریخ برگشت{" "}
+            <span>
+              {new Date(tour.endDate).toLocaleDateString("fa-IR", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                weekday: "long",
+              })}
+            </span>
           </p>
         </div>
-        <button className="badge-success">به اتمام رسیده</button>
+        <button className={tourDate<=now?"badge-success":"badge-pending"}>
+          {
+            tourDate<=now?"به اتمام رسیده":"در حال برگزاری"
+          }
+        </button>
       </div>
       <div className={styles.price}>
         <p>
-          شماره تور <span>123456</span>
+          شماره تور <span>{toPersianNumbers(tour.id.slice(1, 8))}</span>
         </p>
         <p>
-          مبلغ پرداخت شده <span>1478520000 <span>تومان</span></span>
+          مبلغ پرداخت شده{" "}
+          <span>
+            {toPersianNumbersWithComma(tour.price)} <span>تومان</span>
+          </span>
         </p>
       </div>
     </div>

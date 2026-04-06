@@ -36,4 +36,9 @@
     align-items: center;
     gap: 2rem;
   }
+
+  .container .selectGender{
+    background-color: red;
+    border: 1px solid rgba(0, 0, 0, 0.25) ;
+  }
   

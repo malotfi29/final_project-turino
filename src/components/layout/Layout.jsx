@@ -4,7 +4,7 @@ import Header from "./Header"
 
 
 function Layout({children}) {
-    const style = { minHeight: "150vh" };
+    const style = { minHeight: "250vh" };
   return (
     <div>
       <Header/>
