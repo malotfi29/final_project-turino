@@ -1,27 +1,26 @@
 import PersonalInformation from "@/modules/PersonalInformation";
 import styles from "./RegistrationPage.module.css";
-import ProfileIcon from "@/public/icons/ProfileIcon";
-import TextInput from "@/ui/TextInput";
 import { getDuration } from "@/utils/getDuration";
 import {
   toPersianNumbers,
   toPersianNumbersWithComma,
 } from "@/utils/toPersionNumber";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { Calendar } from "react-multi-date-picker";
-import { CalendarProvider } from "zaman";
 import toast from "react-hot-toast";
 import app from "@/services/httpService";
 
 function RegistrationPage({ user, basket }) {
   const duration = getDuration(basket?.startDate, basket?.endDate) || 0;
   const dataToSend = {
-    nationalCode: user.nationalCode,
-    fullName: user.firstName + " " + user.lastName,
-    gender: user.gender,
-    birthDate: user.birthDate,
+    nationalCode: user?.nationalCode,
+    fullName: user?.firstName + " " + user?.lastName,
+    gender: user?.gender,
+    birthDate: user?.birthDate,
   };
+
+
+   
+
+
   const handleSubmit = async () => {
     if (
       !user.firstName ||
@@ -36,13 +35,12 @@ function RegistrationPage({ user, basket }) {
     try {
       const res = await app.post("/api/user/order", dataToSend);
       toast.success(res.data.data.message);
-      
     } catch (error) {
       toast.error(error.message);
-      
     }
   };
 
+  if(!user) return null
   return (
     <div className={styles.container}>
       <PersonalInformation />

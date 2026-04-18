@@ -68,6 +68,7 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
           border: "1px solid rgba(0, 0, 0, 0.25)",
           borderRadius: "6px",
         }}
+        shouldAutoFocus
       />
       <div>
         {time > 0 ? (

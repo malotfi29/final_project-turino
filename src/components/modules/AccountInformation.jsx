@@ -18,54 +18,35 @@ function AccountInformation() {
     formState: { errors },
   } = useForm({ resolver: yupResolver(sentOtpSchema) });
 
-  
-
   const editHandler = async (data) => {
-if(!isEdit){
-  reset({
-    mobile:user.mobile,
-    email:user.email
-  })
-  setIsEdit(true);
+    if (!isEdit) {
+      // reset({
+      //   email: user.email,
+      // });
+      setIsEdit(true);
       return;
-}
+    }
 
-
-
-
-
-   
-      try {
-        await editUser(data);
-        reset(data)
-        setIsEdit(false)
-      } catch (error) {
-        console.log(error);
-      }
-    
+    try {
+      await editUser(data);
+      reset(data);
+      setIsEdit(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
-
- 
 
   return (
     <form className={styles.container} onSubmit={handleSubmit(editHandler)}>
       <h2>اطلاعات حساب کاربری</h2>
-      <div>
+      <div className={styles.innerContainer}>
         <div className={styles.inputContainer}>
           <span>شماره موبایل</span>
-          {isEdit ? (
-            <TextInput
-              name="mobile"
-              register={register}
-              errors={errors}
-              placeholder="شماره موبایل"
-            />
-          ) : (
-            <p>{toPersianNumbers(user.mobile)}</p>
-          )}
+
+          <p>{toPersianNumbers(user.mobile)}</p>
         </div>
         <div className={styles.inputContainer}>
-          <span>ایمیل</span>
+          {!isEdit && <span>ایمیل</span>}
           {isEdit ? (
             <TextInput
               name="email"
@@ -77,9 +58,10 @@ if(!isEdit){
             <p>{user.email || "-"}</p>
           )}
         </div>
-        <button type="submit">{isEdit ? "ویرایش" : "افزودن"}</button>
+         <button className={isEdit ? "button-secondary" : styles.btn}>{isEdit?"افزودن ":"ویرایش"}</button>
       </div>
-    
+
+      
     </form>
   );
 }

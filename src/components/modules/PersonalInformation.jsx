@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./AccountInformation.module.css";
+import styles from "./PersonalInformation.module.css";
 import { useAuth } from "@/providers/AuthContext";
 import { useForm, Controller } from "react-hook-form";
 import TextInput from "@/ui/TextInput";
@@ -19,7 +19,7 @@ function PersonalInformation() {
   } = useForm();
 
   const formatToYMD = (date) => {
-    if (!date) return;  
+    if (!date) return;
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, "0");
     const day = String(date.getDate()).padStart(2, "0");
@@ -27,19 +27,10 @@ function PersonalInformation() {
   };
 
   const editHandler = async (data) => {
-    if (!isEdit) {
-      reset({
-        name: `${user.firstName || ""} ${user.lastName || ""}`,
-        nationalCode: user.nationalCode,
-        gender: user.gender,
-        birthDate: user.birthDate ? new Date(user.birthDate) : null,
-      });
-      setIsEdit(true);
-      return;
-    }
+ 
     try {
       const [firstName, lastName] = data.name.split(" ");
-      const birthDate = formatToYMD(data.birthDate?.value);  
+      const birthDate = formatToYMD(data.birthDate?.value);
       const editedData = {
         ...data,
         firstName,
@@ -57,13 +48,14 @@ function PersonalInformation() {
 
   return (
     <form className={styles.container} onSubmit={handleSubmit(editHandler)}>
-      <div>
+      <div className={styles.title}>
         <h2>اطلاعات شخصی</h2>
-        <button type="submit">{isEdit ? "ویرایش" : "افزودن"}</button>
+        {!isEdit && <button  onClick={()=>setIsEdit(true)}>ویرایش</button>}
       </div>
-      <div>
+      <div className={styles.innerContainer}>
         <div className={styles.inputContainer}>
-          <span>نام و نام خانوادگی</span>
+          {!isEdit && <span>نام و نام خانوادگی</span>}
+
           {isEdit ? (
             <TextInput
               name="name"
@@ -80,7 +72,8 @@ function PersonalInformation() {
           )}
         </div>
         <div className={styles.inputContainer}>
-          <span>کدملی</span>
+          {!isEdit && <span>کدملی</span>}
+
           {isEdit ? (
             <TextInput
               name="nationalCode"
@@ -93,7 +86,8 @@ function PersonalInformation() {
           )}
         </div>
         <div className={styles.inputContainer}>
-          <span>جنسیت</span>
+          {!isEdit && <span>جنسیت</span>}
+
           {isEdit ? (
             <select
               className={styles.selectGender}
@@ -115,9 +109,13 @@ function PersonalInformation() {
             </p>
           )}
         </div>
-        <div className={styles.inputContainer}>
+        <div
+          className={`${styles.inputContainer } ${isEdit&&styles.birthDate}`}
+        >
           <span>تاریخ تولد</span>
+
           {isEdit ? (
+            
             <Controller
               control={control}
               name="birthDate"
@@ -136,6 +134,7 @@ function PersonalInformation() {
                 />
               )}
             />
+            
           ) : (
             <p>
               {user.birthDate
@@ -145,6 +144,14 @@ function PersonalInformation() {
           )}
         </div>
       </div>
+      {isEdit && (
+        <div className={styles.control}>
+          <button className="button-primary" type="submit">
+            افزودن
+          </button>
+          <button className="button-secondary" onClick={()=>setIsEdit(false)}>انصراف</button>
+        </div>
+      )}
     </form>
   );
 }

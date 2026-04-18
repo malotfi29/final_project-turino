@@ -60,6 +60,13 @@
   color: white;
   border-radius: 16px;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+.searchBtn:hover{
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  transform: scale(1.01);
+  border: 2px solid var(--color-primary);
 }
 
 @media screen and (min-width: 768px) {

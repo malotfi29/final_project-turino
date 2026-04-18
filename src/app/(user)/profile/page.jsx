@@ -2,15 +2,17 @@
 import { useAuth } from "@/providers/AuthContext";
 import ProfilePage from "@/templates/ProfilePage";
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 
 function Profile() {
   const { user } = useAuth();
+  const router = useRouter();
 
-  if (!user) {
-    window.location.replace("/");
-    return;
-  }
-
+  useEffect(() => {
+    if (!user) {
+      router.replace("/");
+    }
+  }, [user, router]);
   return <ProfilePage user={user} />;
 }
 

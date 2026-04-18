@@ -14,9 +14,6 @@
 }
 html {
   font-size: 62.5%;
- 
-}
-body{
 }
 
 html,
@@ -51,7 +48,22 @@ textarea {
 }
 .button-primary:hover {
   background-color: var(--color-secondary);
+  color: var(--color-primary);
   transform: scale(1.01);
+}
+.button-secondary {
+  background-color: var(--color-primary);
+  padding: 8px;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.button-secondary:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-primary);
+  transform: scale(1.01);
+  border: 2px solid var(--color-primary);
 }
 
 .badge-success {

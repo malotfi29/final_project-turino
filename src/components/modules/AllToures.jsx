@@ -1,22 +1,24 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import styles from "./AllToures.module.css";
 import SearchTour from "./SearchTour";
 import Tour from "./Tour";
 import toast from "react-hot-toast";
 import app from "@/services/httpService";
 import { toUTCStartOfDay } from "@/utils/toUTCStartOfDay";
+import ArrowDown from "@/public/icons/ArrowDown";
 
 function AllToures() {
   const [data, setData] = useState([]);
+  const [moreTours, setMoreTours] = useState(false);
   const [search, setSearch] = useState({
     origin: "",
     destination: "",
     value: {},
   });
 
-  const fetchTours = async () => {
+  const fetchTours = useCallback(async () => {
     try {
       const params = new URLSearchParams();
 
@@ -43,16 +45,16 @@ function AllToures() {
       }
 
       const res = await app.get(`/api/tour/get?${params.toString()}`);
-
-      setData(res.data);
+      const tours = moreTours ? res.data : res.data.slice(0, 4);
+      setData(tours);
     } catch (error) {
       toast.error("خطا در دریافت تورها");
     }
-  };
+  }, [moreTours, search]);
 
   useEffect(() => {
     fetchTours();
-  }, []);
+  }, [moreTours]);
 
   return (
     <div className={styles.container}>
@@ -69,10 +71,18 @@ function AllToures() {
       </div>
       <h2 className={styles.title}>همه ی تورها</h2>
       <div className={styles.TouresContainer}>
-        {!!data.length
-          ? data.map((tour) => <Tour tour={tour} key={tour.id} />)
-          : <p>تور مورد نظر یافت نشد</p>}
+        {!!data.length ? (
+          data.map((tour) => <Tour tour={tour} key={tour.id} />)
+        ) : (
+          <p>تور مورد نظر یافت نشد</p>
+        )}
       </div>
+      <p className={styles.seeMore} onClick={() => setMoreTours((is) => !is)}>
+        {moreTours ? "بستن" : "مشاهده بیشتر"}
+        <span className={moreTours ? styles.arrow : ""}>
+          <ArrowDown />
+        </span>
+      </p>
     </div>
   );
 }

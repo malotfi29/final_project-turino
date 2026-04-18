@@ -33,3 +33,27 @@
   .search h2 span {
     color: var(--color-primary);
   }
+
+  .seeMore{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+    font-size: 20px;
+    color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    margin-top: 2rem;
+  }
+  .seeMore:hover{
+    color: var(--color-primary);
+  }
+
+  .seeMore span{
+    display: flex;
+    align-items: center;
+  }
+
+  .arrow{
+    transform: rotate(180deg)
+  }

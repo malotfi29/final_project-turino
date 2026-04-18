@@ -6,22 +6,22 @@ import ArrowRight from "@/public/icons/ArrowRight";
 import { toPersianNumbers } from "@/utils/toPersionNumber";
 import Image from "next/image";
 
-const pictures = [
-  { id: 1, img: "/images/p4.png" },
-  { id: 2, img: "/images/p3.png" },
-  { id: 3, img: "/images/p2.png" },
-  { id: 4, img: "/images/p1.png" },
+const images = [
+  "/images/p1.png",
+  "/images/p2.png",
+  "/images/p3.png",
+  "/images/p4.png",
 ];
 
 function WhyTorino() {
-  const [pictureNumber, setPictureNumber] = useState(1);
+  const [index, setIndex] = useState(1);
   const handledecreasePictureNumber = () => {
-    if (pictureNumber === 4) return;
-    setPictureNumber((num) => num + 1);
+    if (index === 3) return;
+    setIndex((num) => num + 1);
   };
   const handleIncreasePictureNumber = () => {
-    if (pictureNumber === 1) return;
-    setPictureNumber((num) => num - 1);
+    if (index === 0) return;
+    setIndex((num) => num - 1);
   };
   return (
     <div className={styles.container}>
@@ -38,28 +38,40 @@ function WhyTorino() {
           را خریداری کنید.
         </p>
       </div>
-      <div className={styles.paginatePictures}>
-        <div className={styles.showPictures}>
-          {pictures.map((p) => (
-            <Image
-              className={styles.img}
-              key={p.id}
-              src={p.img}
-              width={500}
-              height={800}
-              alt="تورینو"
-            />
-          ))}
+
+      <div className={styles.wrapper}>
+        <div className={styles.slider}>
+          {images.map((img, i) => {
+            const position = i - index;
+
+            return (
+              <div
+                key={i}
+                className={styles.card}
+                style={{
+                  transform: `translateX(${position * 40}px) scale(${1 - Math.abs(position) * 0.05})`,
+                  zIndex: images.length - Math.abs(position),
+                }}
+              >
+                <Image src={img} fill alt="تورینو" />
+              </div>
+            );
+          })}
         </div>
-        <div className={styles.pagination}>
-          <button onClick={handledecreasePictureNumber}>
-            <ArrowRight width="36" height="36" />
+
+        <div className={styles.controls}>
+          <button
+            className="button-primary"
+            onClick={handledecreasePictureNumber}
+          >
+            بعدی
           </button>
-          <p>
-            {toPersianNumbers(pictureNumber)}/{toPersianNumbers("4")}
-          </p>
-          <button onClick={handleIncreasePictureNumber}>
-            <ArrowLeft width="36" height="36" />
+          <p>{toPersianNumbers(index + 1)}</p>
+          <button
+            className="button-primary"
+            onClick={handleIncreasePictureNumber}
+          >
+            قبلی
           </button>
         </div>
       </div>

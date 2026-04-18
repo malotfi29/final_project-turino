@@ -3,7 +3,6 @@ import styles from "./HomePage.module.css";
 import AllToures from "@/modules/AllToures";
 import PhoneContainer from "@/modules/PhoneContainer";
 import WhyTorino from "@/modules/WhyTorino";
-import axios from "axios";
 import Footer from "@/modules/Footer";
 
 async function HomePage() {
@@ -16,19 +15,13 @@ async function HomePage() {
         height={700}
         alt="banner"
       />
-      {/* <div className={styles.search}>
-        <h2>
-          <span>تورینو</span> برگزار کننده بهترین تور های داخلی و خارجی
-        </h2>
-        <SearchTour data={data} />
-      </div> */}
+
       <div className={styles.toures}>
-        
         <AllToures />
       </div>
       <PhoneContainer />
       <div className={styles.whyTorino}>
-        <WhyTorino/>
+        <WhyTorino />
       </div>
       <div className={styles.footer}>
         <Footer />

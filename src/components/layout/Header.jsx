@@ -21,9 +21,6 @@ function Header() {
   const [openProfile, setOpenProfile] = useState(false);
   const { user } = useAuth();
 
-
-  
-
   return (
     <div className={styles.header}>
       <div className={styles.icons}>
@@ -57,7 +54,11 @@ function Header() {
           >
             <ProfileIcon />
             <span>{toPersianNumbers(user.mobile)}</span>
-            <ArrowDown />
+            <span
+              className={`${styles.openArrow} ${openProfile ? styles.arrow : ""}`}
+            >
+              <ArrowDown />
+            </span>
           </div>
           <ProfileModal
             openProfile={openProfile}

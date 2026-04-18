@@ -33,8 +33,17 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const logoutUser=async()=>{
+    try {
+      const res = await app.post("/api/user/logout");
+     setUser("")
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
-    <AuthContext.Provider value={{ user, editUser }}>
+    <AuthContext.Provider value={{ user, editUser,logoutUser }}>
       {children}
     </AuthContext.Provider>
   );

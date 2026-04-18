@@ -13,7 +13,7 @@ import app from "@/services/httpService";
 
 function LoginModal({ openLogin, setOpenLogin }) {
   const [step, setStep] = useState(1);
-  const[isSendingOtp,setIsSendingOtp]=useState(false)
+  const [isSendingOtp, setIsSendingOtp] = useState(false);
 
   const {
     register,
@@ -24,16 +24,18 @@ function LoginModal({ openLogin, setOpenLogin }) {
 
   const sendOtpHandler = async (mobile) => {
     try {
-      setIsSendingOtp(true)
+      setIsSendingOtp(true);
       const res = await app.post(`/api/auth/send-otp`, mobile);
 
       setStep(2);
-      toast.success(`کد اعتبار سنجی شما ${res.data.code}`,{style:{fontSize:"14px"}});
+      toast.success(`کد اعتبار سنجی شما ${res.data.code}`, {
+        style: { fontSize: "14px" },
+      });
     } catch (error) {
       toast.error(error);
       console.log(error);
-    }finally{
-      setIsSendingOtp(false)
+    } finally {
+      setIsSendingOtp(false);
     }
   };
 
@@ -41,7 +43,6 @@ function LoginModal({ openLogin, setOpenLogin }) {
 
   return (
     <div className={styles.container}>
-     
       <div
         className={styles.backdrop}
         onClick={() => setOpenLogin(false)}
@@ -77,7 +78,7 @@ function LoginModal({ openLogin, setOpenLogin }) {
           />
         )}
       </div>
-      <Toaster/>
+      <Toaster />
     </div>
   );
 }

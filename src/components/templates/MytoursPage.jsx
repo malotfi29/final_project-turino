@@ -12,6 +12,8 @@ function MytoursPage({tours}) {
         border: "1px solid rgba(0,0,0,0.12)",
         padding: "1rem",
         borderRadius: "8px",
+        height:"100vh",
+        overflowY:"scroll"
       }}
     >
       {

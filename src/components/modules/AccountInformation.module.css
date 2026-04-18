@@ -2,27 +2,21 @@
   border: 1px solid rgba(0, 0, 0, 0.25);
   padding: 1rem;
   border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  gap: 3rem;
 }
-
 .container h2 {
   font-size: 20px;
   font-weight: 400;
 }
-
-.container div {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  padding:1rem 2rem;
-  font-size: 16px;
+.innerContainer {
+  margin-top: 2rem;
 }
 
-.container button {
+.innerContainer button{
+  padding: 1rem 4rem;
+  margin-top: 1rem;
+}
+
+.innerContainer .btn {
   background-color: inherit;
   padding: 2rem;
   cursor: pointer;
@@ -34,13 +28,24 @@
 .inputContainer {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
+  margin-top: 1rem;
+  font-size: 14px;
 }
-.inputContainer p{
+.inputContainer input {
+  flex: 1;
+}
+.inputContainer p {
   color: rgba(0, 0, 0, 0.5);
 }
-.inputContainer input{
-  border: 1px solid rgba(0, 0, 0, 0.25);
-  border-radius: 8px;
-  padding: 1rem;
+
+@media screen and (min-width: 530px) {
+  
+  .innerContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+  }
 }
+

@@ -69,4 +69,8 @@
   transform: translateX(-6px);
   color: white;
 }
+.activeLink{
+  background-color:var(--color-secondary);
+}
+
 
