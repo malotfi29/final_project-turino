@@ -26,14 +26,20 @@ function LoginModal({ openLogin, setOpenLogin }) {
     try {
       setIsSendingOtp(true);
       const res = await app.post(`/api/auth/send-otp`, mobile);
-
       setStep(2);
       toast.success(`کد اعتبار سنجی شما ${res.data.code}`, {
-        style: { fontSize: "14px" },
+        style: { fontSize: "18px" },
       });
     } catch (error) {
-      toast.error(error);
-      console.log(error);
+      if (error.status === 404) {
+        toast.error("خطا در برقراری ارتباط لطفا مجددا تلاش کنید", {
+          style: { fontSize: "18px" },
+        });
+        return;
+      }
+      toast.error(error.message, {
+        style: { fontSize: "18px" },
+      });
     } finally {
       setIsSendingOtp(false);
     }

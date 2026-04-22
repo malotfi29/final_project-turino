@@ -1,16 +1,3 @@
-// "use client"
-
-// function Skeleton({width="100%",height="40px",borderRadius="6px"}) {
-   
-//   return (
-//     <div style={{width,height,borderRadius,background:"rgb(159, 207, 171)",animation:"pulse 1.5s infinite"}} >
-//       در حال ارسال کد تایید
-//     </div>
-//   )
-// }
-
-// export default Skeleton
-
 
 "use client";
 

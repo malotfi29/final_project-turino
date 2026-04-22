@@ -5,6 +5,7 @@ import app from "@/services/httpService";
 import MytoursPage from "@/templates/MytoursPage";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 function MyTours() {
   const { user } = useAuth();
@@ -15,9 +16,13 @@ function MyTours() {
     async function fetchTours() {
       try {
         const res = await app.get(`/api/user/tours`);
+        
+        
         setTours(res.data.data);
       } catch (error) {
-        console.log(error);
+        toast.error(error.message, {
+          style: { fontSize: "16px" },
+        });
         setTours([]);
       }
     }
@@ -25,11 +30,17 @@ function MyTours() {
   }, []);
 
   useEffect(() => {
-    if (!user) {
-      router.replace("/");
+    async function getUser() {
+      try {
+        const res = await app.get(`/api/user/getProfile`);
+      } catch (error) {
+        router.replace("/");
+      }
     }
-  }, [user, router]);
+    getUser();
+  }, [router]);
 
+  if (!user) return null;
   return <MytoursPage tours={tours} />;
 }
 

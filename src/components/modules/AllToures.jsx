@@ -8,6 +8,8 @@ import toast from "react-hot-toast";
 import app from "@/services/httpService";
 import { toUTCStartOfDay } from "@/utils/toUTCStartOfDay";
 import ArrowDown from "@/public/icons/ArrowDown";
+import Skeleton from "@/ui/Skeleton";
+import SkeletonDots from "@/ui/Skeleton";
 
 function AllToures() {
   const [data, setData] = useState([]);
@@ -74,7 +76,8 @@ function AllToures() {
         {!!data.length ? (
           data.map((tour) => <Tour tour={tour} key={tour.id} />)
         ) : (
-          <p>تور مورد نظر یافت نشد</p>
+          <SkeletonDots/>
+          // <p>تور مورد نظر یافت نشد</p>
         )}
       </div>
       <p className={styles.seeMore} onClick={() => setMoreTours((is) => !is)}>

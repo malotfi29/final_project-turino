@@ -1,26 +1,19 @@
+import styles from "./MyToursPage.module.css";
 import MyTour from "@/modules/MyTour";
 
-function MytoursPage({tours}) {
-  
-  
+function MytoursPage({ tours }) {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        gap: "1rem",
-        border: "1px solid rgba(0,0,0,0.12)",
-        padding: "1rem",
-        borderRadius: "8px",
-        height:"100vh",
-        overflowY:"scroll"
-      }}
-    >
-      {
-        tours.map(tour=><MyTour tour={tour} key={tour.id} />)
-      }
-      
-    </div>
+    <>
+      {!tours.length ? (
+        <p className={styles.noTours}>توری وجود ندارد</p>
+      ) : (
+        <div className={styles.container}>
+          {tours.map((tour, index) => (
+            <MyTour tour={tour} key={index} />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 

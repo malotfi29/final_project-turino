@@ -24,7 +24,7 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
   }, [time]);
 
   const checkOtpHandler = async () => {
-    // e.preventDefault();
+   
     try {
       const res = await app.post(`/api/auth/check-otp`, {
         mobile,
@@ -34,8 +34,12 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
 
       setOpenLogin(false);
     } catch (error) {
-     toast.error("کد وارد شده صحیح نمی باشد")
       console.log(error);
+      
+     toast.error(error.message, {
+      style: { fontSize: "18px" },
+    })
+ 
     }
   };
 

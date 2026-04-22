@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   const body = await req.json();
+
   const res = await fetch(`${process.env.BASE_URL_SERVER}/auth/check-otp`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -9,7 +10,10 @@ export async function POST(req) {
   });
 
   if (!res.ok) {
-    return NextResponse.json({ message: "خطای ورود" }, { status: 401 });
+    return NextResponse.json(
+      { message: "کد وارد شده فاقد اعتبار می باشد" },
+      { status: 400 }
+    );
   }
 
   const data = await res.json();

@@ -40,8 +40,6 @@ function TourDetailsPage({ data }) {
         router.push("/registration");
       }
     } catch (error) {
-      console.log(error);
-
       toast.error(error.message, { style: { fontSize: "14px" } });
     }
   };

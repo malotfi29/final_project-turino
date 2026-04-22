@@ -5,7 +5,6 @@ export async function POST(req) {
   const cookieStore = await cookies();
 
   const body = await req.json();
-console.log(body);
 
   const accessToken = cookieStore.get("accessToken")?.value;
 
@@ -19,7 +18,10 @@ console.log(body);
   try {
     const res = await fetch(`${process.env.BASE_URL_SERVER}/order`, {
       method: "POST",
-      headers: { Authorization: `Bearer ${accessToken}`,"Content-Type":" application/json " },
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": " application/json ",
+      },
       body: JSON.stringify(body),
     });
     if (!res.ok) {
@@ -31,8 +33,6 @@ console.log(body);
     const data = await res.json();
     return NextResponse.json({ data });
   } catch (error) {
-    console.log("erre",error);
-    
     return NextResponse.json(
       { error: "خطا در برقراری ارتباط" },
       { status: 500 }

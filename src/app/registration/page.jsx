@@ -11,26 +11,25 @@ function Registration() {
   const [basket, setBasket] = useState(null);
   const { user } = useAuth();
 
-  useEffect(() => {
-    if (!user) {
-      router.replace("/");
-     
-    }
-  }, [user, router]);
-
+  
   useEffect(() => {
     async function fetchBasket() {
       try {
         const res = await app.get(`/api/tour/basket`);
         setBasket(res.data.basket);
       } catch (error) {
-        console.log(error);
-        toast(error.message);
+     
+        toast.error(error.message, {
+          style: { fontSize: "16px",color:"red" },
+        });
         setBasket(null);
+        router.replace("/");
       }
     }
     fetchBasket();
-  }, []);
+  }, [router]);
+  
+  
 
   return <RegistrationPage user={user} basket={basket} />;
 }

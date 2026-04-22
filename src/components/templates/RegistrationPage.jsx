@@ -7,8 +7,10 @@ import {
 } from "@/utils/toPersionNumber";
 import toast from "react-hot-toast";
 import app from "@/services/httpService";
+import { useRouter } from "next/navigation";
 
 function RegistrationPage({ user, basket }) {
+  const router = useRouter();
   const duration = getDuration(basket?.startDate, basket?.endDate) || 0;
   const dataToSend = {
     nationalCode: user?.nationalCode,
@@ -16,10 +18,6 @@ function RegistrationPage({ user, basket }) {
     gender: user?.gender,
     birthDate: user?.birthDate,
   };
-
-
-   
-
 
   const handleSubmit = async () => {
     if (
@@ -29,18 +27,22 @@ function RegistrationPage({ user, basket }) {
       !user.birthDate ||
       !user.nationalCode
     ) {
-      toast.error("لطفا اطلاعات خود را تکمیل کنید");
+      toast.error("لطفا اطلاعات خود را تکمیل کنید", {
+        styles: { fontSize: "16px" },
+      });
       return;
     }
     try {
       const res = await app.post("/api/user/order", dataToSend);
-      toast.success(res.data.data.message);
+      toast.success(res.data.data.message, { style: { fontSize: "16px" } });
+
+      router.replace("/myTours");
     } catch (error) {
       toast.error(error.message);
     }
   };
 
-  if(!user) return null
+  if (!user) return null;
   return (
     <div className={styles.container}>
       <PersonalInformation />

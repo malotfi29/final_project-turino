@@ -1,18 +1,25 @@
-import Link from "next/link"
-import styles from "./layout.module.css"
 
-function layout({children}) {
+
+import styles from "./layout.module.css";
+import UserLayoutLinks from "@/modules/UserLayoutLinks";
+
+
+export const metadata = {
+  title: "پروفایل",
+};
+
+
+
+function layout({ children }) {
+
   return (
     <div className={styles.container}>
-      <div className={styles.links} >
-        <Link href="/profile" >پروفایل</Link>
-        <Link href="/myTours" >تورهای من</Link>
-        <Link href="/transactions" >تراکنش ها</Link>
-
-      </div>
-      <div className={styles.children} >{children}</div>
+   <UserLayoutLinks/>
+      <div className={styles.children}>{children}</div>
     </div>
-  )
+  );
 }
 
-export default layout
+export default layout;
+
+
