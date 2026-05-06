@@ -6,6 +6,7 @@ export async function GET() {
 
   const accessToken =cookieStore.get("accessToken")?.value;
 
+
   if (!accessToken) {
     return NextResponse.json(
       { message: "لطفا وارد حساب کاربری خود شوید" },

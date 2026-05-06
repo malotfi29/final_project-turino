@@ -36,6 +36,8 @@ export function AuthProvider({ children }) {
   const logoutUser=async()=>{
     try {
       const res = await app.post("/api/user/logout");
+      console.log(res);
+      
      setUser("")
     } catch (error) {
       console.log(error);

@@ -21,6 +21,7 @@ function Header() {
   const [openProfile, setOpenProfile] = useState(false);
   const { user } = useAuth();
 
+
   return (
     <div className={styles.header}>
       <div className={styles.icons}>

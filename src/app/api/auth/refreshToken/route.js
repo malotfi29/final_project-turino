@@ -3,24 +3,55 @@ import { NextResponse } from "next/server";
 
 export async function POST() {
   const cookieStore = await cookies();
+
   const refreshToken = cookieStore.get("refreshToken")?.value;
+
   if (!refreshToken) {
     return NextResponse.json(
       { message: "لطفا وارد حساب کاربری خود شوید" },
       { status: 401 }
     );
   }
+
   try {
     const res = await fetch(
       `${process.env.BASE_URL_SERVER}/auth/refresh-token`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(refreshToken),
+        body: JSON.stringify({ refreshToken }),
       }
     );
+
+    if (!res.ok) {
+      return NextResponse.json(
+        { message: "توکن نامعتبر است" },
+        { status: 400 }
+      );
+    }
+
     const data = await res.json();
-    return NextResponse.json(data);
+
+    const { accessToken } = data;
+    const response = NextResponse.json({ status: 200 });
+    response.cookies.set("accessToken", accessToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      path: "/",
+      maxAge: 7 * 24 * 60 * 60,
+    });
+
+    response.cookies.set("refreshToken", refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "strict",
+      path: "/",
+      maxAge: 30 * 24 * 60 * 60,
+    });
+console.log(response);
+
+    return response;
   } catch (error) {
     return NextResponse.json(
       { message: "خطا در برقراری ارتباط" },
