@@ -28,15 +28,16 @@ https://github.com/milad-azami/travel-agency-api-torino
 
 ## Screen shots
 ### Main page
-<img width="1101" height="1578" alt="5" src="https://github.com/user-attachments/assets/cbc80186-feb5-4d70-b424-8f31473d7513" />
+<img width="547" height="725" alt="5" src="https://github.com/user-attachments/assets/2f6a3fb3-1fbe-42d4-9f4b-14a6201de516" />
 
 ### Login modal
-<img width="1101" height="1578" alt="6" src="https://github.com/user-attachments/assets/6a7c4ad5-80d8-427a-950d-c6ce8401a5ce" />
+<img width="1094" height="686" alt="6" src="https://github.com/user-attachments/assets/53326590-71fb-41c5-a576-97452d9426e0" />
 
 ### Booking page
-<img width="1666" height="1578" alt="7" src="https://github.com/user-attachments/assets/5c64de6b-60cf-4141-86b7-14ec79827a4e" />
+<img width="1666" height="769" alt="7" src="https://github.com/user-attachments/assets/91861612-6d0f-4c65-90b4-34143d273cb1" />
 
 ### User profile page
-<img width="1621" height="1578" alt="8" src="https://github.com/user-attachments/assets/45fdeb8d-7e04-4dbb-81a9-53c42d651400" />
+<img width="1621" height="817" alt="8" src="https://github.com/user-attachments/assets/bb0e927d-3e59-4610-91ac-0147b06fb9cd" />
+
 
 
