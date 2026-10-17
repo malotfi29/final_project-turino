@@ -9,12 +9,12 @@ function SendOtpForm({ register, onSubmit, errors, isSendingOtp }) {
   return (
     <form onSubmit={onSubmit}>
       <TextInput
-        label="شماره موبایل خود را وارد کنید"
+        label="Enter your mobile number"
         register={register}
         errors={errors}
         name="mobile"
         required
-        placeholder={toPersianNumbers("09123456789")}
+        placeholder={"09123456789"}
       />
       <button
         type="submit"
@@ -28,7 +28,7 @@ function SendOtpForm({ register, onSubmit, errors, isSendingOtp }) {
           width: "100%",
         }}
       >
-        {isSendingOtp ? <Skeleton /> : "ارسال کد تایید"}
+        {isSendingOtp ? <Skeleton /> :"Send Verification Code"}
       </button>
     </form>
   );

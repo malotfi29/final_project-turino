@@ -27,12 +27,12 @@ function LoginModal({ openLogin, setOpenLogin }) {
       setIsSendingOtp(true);
       const res = await app.post(`/api/auth/send-otp`, mobile);
       setStep(2);
-      toast.success(`کد اعتبار سنجی شما ${res.data.code}`, {
+      toast.success(`Your verification code is ${res.data.code}`, {
         style: { fontSize: "18px" },
       });
     } catch (error) {
       if (error.status === 404) {
-        toast.error("خطا در برقراری ارتباط لطفا مجددا تلاش کنید", {
+        toast.error("Connection error. Please try again.", {
           style: { fontSize: "18px" },
         });
         return;
@@ -66,7 +66,7 @@ function LoginModal({ openLogin, setOpenLogin }) {
           )}
 
           <h2 className={styles.title}>
-            {step === 1 ? "ورود به تورینو" : "کد تایید را وارد کنید"}
+          {step === 1 ? "Log in to Tourino" : "Enter Verification Code"}
           </h2>
         </div>
         {step === 1 ? (

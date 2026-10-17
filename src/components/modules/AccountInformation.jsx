@@ -38,27 +38,27 @@ function AccountInformation() {
 
   return (
     <form className={styles.container} onSubmit={handleSubmit(editHandler)}>
-      <h2>اطلاعات حساب کاربری</h2>
+      <h2>Account Information</h2>
       <div className={styles.innerContainer}>
         <div className={styles.inputContainer}>
-          <span>شماره موبایل</span>
+          <span>Mobile Number</span>
 
-          <p>{toPersianNumbers(user.mobile)}</p>
+          <p>{user.mobile}</p>
         </div>
         <div className={styles.inputContainer}>
-          {!isEdit && <span>ایمیل</span>}
+          {!isEdit && <span>Email</span>}
           {isEdit ? (
             <TextInput
               name="email"
               register={register}
               errors={errors}
-              placeholder="ایمیل"
+              placeholder="Email"
             />
           ) : (
             <p>{user.email || "-"}</p>
           )}
         </div>
-         <button className={isEdit ? "button-secondary" : styles.btn}>{isEdit?"افزودن ":"ویرایش"}</button>
+         <button className={isEdit ? "button-secondary" : styles.btn}>{isEdit?"Add ":"Edit"}</button>
       </div>
 
       

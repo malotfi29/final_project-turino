@@ -10,7 +10,11 @@ import { normalizeDate } from "@/utils/normalizeDate";
 
 const formatDate = (date) => {
   if (!date) return "";
-  return date.toLocaleDateString("fa-IR");
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
 };
 
 function SearchTour({ data, search, setSearch, onSearch }) {
@@ -35,7 +39,7 @@ function SearchTour({ data, search, setSearch, onSearch }) {
       <div className={styles.comboContainer}>
         <LocationIcon />
         <ComboInput
-          label="مبدا"
+          label="Origin"
           data={data}
           value={search.origin}
           onChange={(val) => setSearch((prev) => ({ ...prev, origin: val }))}
@@ -44,7 +48,7 @@ function SearchTour({ data, search, setSearch, onSearch }) {
       <div className={styles.comboContainer}>
         <SearchIcon />
         <ComboInput
-          label="مقصد"
+          label="Destination"
           data={data}
           value={search.destination}
           onChange={(val) =>
@@ -59,7 +63,7 @@ function SearchTour({ data, search, setSearch, onSearch }) {
           <span>
             {search.value.from && search.value.to
               ? ` ${formatDate(search.value.from)} - ${formatDate(search.value.to)}`
-              : "تاریخ"}
+              : "Date"}
           </span>
         </button>
         {showDate ? (
@@ -68,7 +72,7 @@ function SearchTour({ data, search, setSearch, onSearch }) {
               showDate ? styles.open : ""
             }`}
           >
-            <CalendarProvider locale="fa" round="x4" accentColor="#6374ae">
+            <CalendarProvider locale="en" round="x4" accentColor="#6374ae">
               <Calendar
                 defaultValue={new Date()}
                 onChange={(range) => {
@@ -92,7 +96,7 @@ function SearchTour({ data, search, setSearch, onSearch }) {
         ) : null}
       </div>
       <button className={styles.searchBtn} onClick={onSearch}>
-        جستجو
+        Search
       </button>
     </div>
   );

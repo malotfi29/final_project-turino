@@ -10,7 +10,7 @@ async function HomePage() {
     <div className={styles.container}>
       <Image
         className={styles.banner}
-        src="/images/banner.png"
+        src="/images/banner.webp"
         width={1000}
         height={700}
         alt="banner"

@@ -35,6 +35,7 @@ function Header() {
         <Image
           className={styles.img}
           src="/images/Torino.png"
+          loading="eager"
           width={1000}
           height={700}
           alt="Torino"
@@ -54,7 +55,7 @@ function Header() {
             onClick={() => setOpenProfile((is) => !is)}
           >
             <ProfileIcon />
-            <span>{toPersianNumbers(user.mobile)}</span>
+            <span>{user.mobile}</span>
             <span
               className={`${styles.openArrow} ${openProfile ? styles.arrow : ""}`}
             >
@@ -73,7 +74,7 @@ function Header() {
             onClick={() => setOpenLogin((is) => !is)}
           >
             <ProfileIcon />
-            <span>ورود | ثبت نام</span>
+            <span>Log In | Sign Up</span>
           </button>
           <button
             className={`button-primary ${styles.mobileButton}`}

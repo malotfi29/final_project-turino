@@ -13,9 +13,9 @@ function NotFound() {
         alt="NOT-FOUND"
       />
       <div>
-        <h2>صفحه مورد نظر یافت نشد</h2>
+      <h2>Page Not Found</h2>
         <button className="button-primary">
-          <Link href="/">بازگشت به صفحه اصلی</Link>
+        <Link href="/">Back to Home</Link>
         </button>
       </div>
     </div>

@@ -10,15 +10,13 @@ import {
 } from "@headlessui/react";
 
 const staredCities = [
-  { id: 1, name: "tehran", value: "تهران" },
-  { id: 2, name: "sanandaj", value: "سنندج" },
-  { id: 10, name: "tabriz", value: "تبریز" },
-  { id: 11, name: "shiraz", value: "شیراز" },
+  { id: 1, name: "tehran", value: "tehran" },
+  { id: 2, name: "sanandaj", value: "sanandaj" },
+  { id: 10, name: "tabriz", value: "tabriz" },
+  { id: 11, name: "shiraz", value: "shiraz" },
 ];
 
 function ComboInput({ data, label, value, onChange }) {
-  
-  
   const [query, setQuery] = useState("");
   const destinations = data?.map((t) => t.destination) || [];
   const origins = data?.map((t) => t.origin) || [];
@@ -28,10 +26,14 @@ function ComboInput({ data, label, value, onChange }) {
     ).values(),
   ];
 
+
+
   const filteredCities =
-    query === ""
+    query.trim() === ""
       ? staredCities
-      : cities.filter((city) => city.value.trim().includes(query.trim()));
+      : cities.filter((city) =>
+          city.value.trim().toLowerCase().includes(query.trim().toLowerCase())
+        );
 
   return (
     <div className={styles.container}>
@@ -41,13 +43,13 @@ function ComboInput({ data, label, value, onChange }) {
           displayValue={(city) => city?.value}
           onChange={(event) => setQuery(event.target.value)}
           placeholder={label}
-          onFocus={()=>setQuery("")}
+          onFocus={() => setQuery("")}
         />
 
         <ComboboxOptions className={styles.comboOptions}>
-          <p>پرتردد</p>
+          <p>Popular Routes</p>
           {filteredCities.length === 0 ? (
-            <div className={styles.notFound}>نتیجه‌ای یافت نشد</div>
+            <div className={styles.notFound}>No results found</div>
           ) : (
             filteredCities.map((city) => (
               <ComboboxOption

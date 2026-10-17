@@ -56,6 +56,9 @@ width: 100%;
   align-items: center;
   gap: 10px;
 }
+.controls button{
+  width: 100px;
+}
 .controls p{
     font-size: 20px;
     color: var(--color-primary);

@@ -24,13 +24,13 @@ function Tour({ tour }) {
           <h2>{tour.title}</h2>
           <div>
             <span>
-              {new Date(tour.startDate).toLocaleDateString("fa-IR", {
+              {new Date(tour.startDate).toLocaleDateString("en-US", {
                 month: "long",
-              })}{" "}
-              ماه
+              })}
+              
             </span>
             <span>
-              {toPersianNumbers(getDuration(tour.startDate, tour.endDate))} روز-
+              {getDuration(tour.startDate, tour.endDate)} days-
             </span>
             <span>{shortText(tour.options.join(" "), 15)}</span>
           </div>
@@ -38,10 +38,10 @@ function Tour({ tour }) {
       </div>
       <div className={styles.tourFooter}>
         <Link href={`/tourDetails/${tour.id}`} >
-        <button >رزرو</button>
+        <button >Book</button>
         </Link>
         <p>
-          <span>{toPersianNumbersWithComma(tour.price)}</span> تومان
+          <span>{tour.price}</span> $
         </p>
       </div>
     </div>

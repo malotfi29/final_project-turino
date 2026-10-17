@@ -8,7 +8,7 @@ export async function POST() {
 
   if (!refreshToken) {
     return NextResponse.json(
-      { message: "لطفا وارد حساب کاربری خود شوید" },
+      { message: "Please log in to your account." },
       { status: 401 }
     );
   }
@@ -25,7 +25,7 @@ export async function POST() {
 
     if (!res.ok) {
       return NextResponse.json(
-        { message: "توکن نامعتبر است" },
+        { message: "Invalid token."},
         { status: 400 }
       );
     }
@@ -54,7 +54,7 @@ console.log(response);
     return response;
   } catch (error) {
     return NextResponse.json(
-      { message: "خطا در برقراری ارتباط" },
+      { message: "Connection error." },
       { status: 500 }
     );
   }

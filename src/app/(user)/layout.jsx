@@ -5,7 +5,7 @@ import UserLayoutLinks from "@/modules/UserLayoutLinks";
 
 
 export const metadata = {
-  title: "پروفایل",
+  title: "Profile",
 };
 
 

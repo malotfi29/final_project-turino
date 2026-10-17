@@ -5,6 +5,7 @@
 .container label {
     font-size: 16px;
     color: rgba(0, 0, 0, 1);
+    margin-bottom: 1rem;
   }
   .container input {
    

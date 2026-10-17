@@ -10,7 +10,7 @@ export async function POST(req) {
 
   if (!accessToken) {
     return NextResponse.json(
-      { error: "لطفا وارد حساب کاربری خود شوید" },
+      { error: "Please log in to your account." },
       { status: 401 }
     );
   }
@@ -26,7 +26,7 @@ export async function POST(req) {
     });
     if (!res.ok) {
       return NextResponse.json(
-        { error: "مشکلی پیش آمده است" },
+        { error:"Something went wrong." },
         { status: res.status }
       );
     }
@@ -34,7 +34,7 @@ export async function POST(req) {
     return NextResponse.json({ data });
   } catch (error) {
     return NextResponse.json(
-      { error: "خطا در برقراری ارتباط" },
+      { error: "Connection error." },
       { status: 500 }
     );
   }

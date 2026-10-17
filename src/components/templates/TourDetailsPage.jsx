@@ -19,13 +19,7 @@ import app from "@/services/httpService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
-const vehicles = {
-  bus: "اتوبوس",
-  ship: "کشتی",
-  train: "قطار",
-  airplain: "هواپیما",
-  SUV: "اتومبیل استیشن",
-};
+
 
 function TourDetailsPage({ data }) {
   const duration = getDuration(data?.startDate, data?.endDate);
@@ -56,24 +50,24 @@ function TourDetailsPage({ data }) {
           unoptimized
         />
         <div className={styles.tourTitle}>
-          <h2> تور {data.title} </h2>
+          <h2> {data.title} </h2>
           <p>
-            {toPersianNumbers(duration)}روز و {toPersianNumbers(duration - 1)}{" "}
-            شب
+            {duration}days and {duration - 1}
+            night
           </p>
         </div>
         <div className={styles.mainOptions}>
           <p>
             <UserTicket />
-            تورلیدر از مبدا
+            Departure Tour Guide
           </p>
           <p>
             <Map />
-            برنامه سفر
+            Travel Itinerary
           </p>
           <p>
             <MedalStar />
-            تضمین کیفیت
+            Quality Assurance
           </p>
         </div>
 
@@ -81,67 +75,67 @@ function TourDetailsPage({ data }) {
           <div>
             <p>
               <Routing />
-              مبدا
+              Origin
             </p>
             <span>{data.origin.value}</span>
           </div>
           <div>
             <p>
               <Calender />
-              تاریخ رفت
+              Tour Start Date
             </p>
             <span>
-              {new Date(data.startDate).toLocaleDateString("fa-IR", {
+              {new Date(data.startDate).toLocaleDateString("en-US", {
                 year: "numeric",
-                month: "long",
-                day: "numeric",
+                month: "2-digit",
+                day: "2-digit",
               })}
             </span>
           </div>
           <div>
             <p>
               <Calender />
-              تاریخ برگشت
+              Return Date
             </p>
             <span>
-              {new Date(data.endDate).toLocaleDateString("fa-IR", {
+              {new Date(data.endDate).toLocaleDateString("en-US", {
                 year: "numeric",
-                month: "long",
-                day: "numeric",
+                month: "2-digit",
+                day: "2-digit",
               })}
             </span>
           </div>
           <div>
             <p>
               <Bus />
-              حمل و نقل
+              Transportation
             </p>
-            <span>{vehicles[data.fleetVehicle]}</span>
+            <span>{data.fleetVehicle}</span>
           </div>
           <div>
             <p>
               <ProfileUser />
-              ظرفیت
+              Capacity
             </p>
-            <span>{toPersianNumbers(data.availableSeats)} نفر </span>
+            <span>{data.availableSeats} People </span>
           </div>
           <div>
             <p>
-              <Secure /> بیمه
+              <Secure /> Insurance
             </p>
             <span>
               {data.insurance
-                ? `بیمه  ${toPersianNumbers("50")} هزار دیناری`
-                : "ندارد"}
+                ? `Insurance: 50,000 Dinars`
+: "Not Included"}
             </span>
           </div>
         </div>
 
         <div className={styles.price}>
           <p>
-            <span>{toPersianNumbersWithComma(data.price)}</span>تومان
+            <span>{(data.price)}</span>$
           </p>
-          <button onClick={handleBookingTour}>رزرو و خرید</button>
+          <button onClick={handleBookingTour}>Book Now</button>
         </div>
       </div>
     </div>

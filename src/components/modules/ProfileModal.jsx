@@ -39,21 +39,21 @@ function ProfileModal({ openProfile, setOpenProfile }) {
               height="18"
             />
           </span>
-          {toPersianNumbers(user.mobile)}{" "}
+          {user.mobile}
         </p>
         <Link href="/profile" onClick={() => setOpenProfile((is) => !is)}>
           <p className={styles.profile}>
             <span>
               <ProfileWhite />
             </span>
-            اطلاعات حساب کاربری
+            Account Information
           </p>
         </Link>
         <p className={styles.logout} onClick={logoutHandler}>
           <span>
             <Logout />
           </span>
-          خروج از حساب کاربری
+          Log Out
         </p>
       </div>
     </div>

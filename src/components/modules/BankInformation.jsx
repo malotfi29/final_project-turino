@@ -38,33 +38,33 @@ function BankInformation() {
   return (
     <form className={styles.container} onSubmit={handleSubmit(editHandler)}>
       <div className={styles.title}>
-        <h2>اطلاعات حساب بانکی</h2>
-        {!isEdit && <button onClick={() => setIsEdit(true)}>ویرایش</button>}
+        <h2>Bank Details</h2>
+        {!isEdit && <button onClick={() => setIsEdit(true)}>Edit</button>}
       </div>
       <div className={styles.innerContainer}>
         <div className={styles.inputContainer}>
-          {!isEdit && <span>شماره شبا</span>}
+          {!isEdit && <span>IBAN</span>}
 
           {isEdit ? (
             <TextInput
               name="shaba_code"
               register={register}
               errors={errors}
-              placeholder="شماره شبا"
+              placeholder="IBAN"
             />
           ) : (
             <p>{user.payment?.shaba_code ? toPersianNumbers(user.payment.shaba_code) : "-"}</p>
           )}
         </div>
         <div className={styles.inputContainer}>
-          {!isEdit && <span>شماره حساب</span>}
+          {!isEdit && <span>Account Number</span>}
 
           {isEdit ? (
             <TextInput
               name="debitCard_code"
               register={register}
               errors={errors}
-              placeholder="شماره حساب"
+              placeholder="Account Number"
             />
           ) : (
             <p>
@@ -73,14 +73,14 @@ function BankInformation() {
           )}
         </div>
         <div className={styles.inputContainer}>
-          {!isEdit && <span>شماره کارت</span>}
+          {!isEdit && <span>Card Number</span>}
 
           {isEdit ? (
             <TextInput
               name="accountIdentifier"
               register={register}
               errors={errors}
-              placeholder="شماره کارت"
+              placeholder="Card Number"
             />
           ) : (
             <p>
@@ -94,10 +94,10 @@ function BankInformation() {
       {isEdit && (
         <div className={styles.control}>
           <button className="button-primary" type="submit">
-            افزودن
+            Add
           </button>
           <button className="button-secondary" onClick={() => setIsEdit(false)}>
-            انصراف
+            Cancel
           </button>
         </div>
       )}

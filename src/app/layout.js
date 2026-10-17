@@ -4,19 +4,25 @@ import Layout from "@/layout/Layout";
 import { Toaster } from "react-hot-toast";
 import QueryClientPro from "@/providers/QueryClientProvider";
 import { AuthProvider } from "@/providers/AuthContext";
+import { Inter } from "next/font/google";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 export const metadata = {
   title: {
-    template:"%s | تورینو",
-    default:"تورینو"
+    template:"%s | Torino",
+    default:"Torino"
   },
-  description: "تورینو ",
+  description: "Torino ",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="fa" dir="rtl">
-      <body className={yekan.className}>
+    <html lang="fa" dir="ltr">
+      <body className={inter.className}>
         <AuthProvider>
           <QueryClientPro>
             <Layout>{children}</Layout>

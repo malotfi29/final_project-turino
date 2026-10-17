@@ -27,7 +27,7 @@ function RegistrationPage({ user, basket }) {
       !user.birthDate ||
       !user.nationalCode
     ) {
-      toast.error("لطفا اطلاعات خود را تکمیل کنید", {
+      toast.error("Please complete your profile information.", {
         styles: { fontSize: "16px" },
       });
       return;
@@ -50,15 +50,15 @@ function RegistrationPage({ user, basket }) {
         <div className={styles.basketTitle}>
           <h2>{basket?.title}</h2>
           <p>
-            {toPersianNumbers(duration)}روز و {toPersianNumbers(duration - 1)}{" "}
-            شب
+            {duration}days and {duration - 1}
+            night
           </p>
         </div>
         <div className={styles.basketPrice}>
-          <p>قیمت نهایی :</p>
-          <span>{toPersianNumbersWithComma(basket?.price)} تومان</span>
+          <p>Total Price:</p>
+          <span>{basket?.price}$</span>
         </div>
-        <button onClick={handleSubmit}>ثبت و خرید نهایی</button>
+        <button onClick={handleSubmit}>Complete Booking</button>
       </div>
     </div>
   );

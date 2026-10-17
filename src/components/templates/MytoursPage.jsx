@@ -5,7 +5,7 @@ function MytoursPage({ tours }) {
   return (
     <>
       {!tours.length ? (
-        <p className={styles.noTours}>توری وجود ندارد</p>
+        <p className={styles.noTours}>`No tours available`</p>
       ) : (
         <div className={styles.container}>
           {tours.map((tour, index) => (

@@ -49,19 +49,19 @@ function PersonalInformation() {
   return (
     <form className={styles.container} onSubmit={handleSubmit(editHandler)}>
       <div className={styles.title}>
-        <h2>اطلاعات شخصی</h2>
-        {!isEdit && <button  onClick={()=>setIsEdit(true)}>ویرایش</button>}
+        <h2>Personal Information</h2>
+        {!isEdit && <button  onClick={()=>setIsEdit(true)}>Edit</button>}
       </div>
       <div className={styles.innerContainer}>
         <div className={styles.inputContainer}>
-          {!isEdit && <span>نام و نام خانوادگی</span>}
+          {!isEdit && <span>Full Name</span>}
 
           {isEdit ? (
             <TextInput
               name="name"
               register={register}
               errors={errors}
-              placeholder="نام و نام خانوادگی"
+              placeholder="Full Name"
             />
           ) : (
             <p>
@@ -72,21 +72,21 @@ function PersonalInformation() {
           )}
         </div>
         <div className={styles.inputContainer}>
-          {!isEdit && <span>کدملی</span>}
+          {!isEdit && <span>National ID</span>}
 
           {isEdit ? (
             <TextInput
               name="nationalCode"
               register={register}
               errors={errors}
-              placeholder="کدملی"
+              placeholder="National ID"
             />
           ) : (
-            <p>{toPersianNumbers(user.nationalCode) || "-"}</p>
+            <p>{user.nationalCode || "-"}</p>
           )}
         </div>
         <div className={styles.inputContainer}>
-          {!isEdit && <span>جنسیت</span>}
+          {!isEdit && <span>Gender</span>}
 
           {isEdit ? (
             <select
@@ -94,25 +94,25 @@ function PersonalInformation() {
               id="gender"
               {...register("gender")}
             >
-              <option value="">جنسیت</option>
-              <option value="female">زن</option>
-              <option value="male">مرد</option>
-              <option value="other">سایر</option>
+              <option value="">Gender</option>
+              <option value="female">female</option>
+              <option value="male">male</option>
+              <option value="other">other</option>
             </select>
           ) : (
             <p>
               {user.gender === "female"
-                ? "زن"
+                ? "female"
                 : user.gender === "male"
-                  ? "مرد"
-                  : "سایر" || "-"}
+                  ? "male"
+                  : "other" || "-"}
             </p>
           )}
         </div>
         <div
           className={`${styles.inputContainer } ${isEdit&&styles.birthDate}`}
         >
-          <span>تاریخ تولد</span>
+          <span>Date of Birth</span>
 
           {isEdit ? (
             
@@ -122,10 +122,11 @@ function PersonalInformation() {
               id="birthDate"
               render={({ field }) => (
                 <DatePicker
-                  locale="fa"
+                  locale="en"
                   round="x4"
                   accentColor="#6374ae"
-                  direction="bottom"
+                  direction="rtl"
+                  position="center"
                   maxDate={new Date()}
                   value={field.value}
                   onChange={(value) => {
@@ -138,7 +139,7 @@ function PersonalInformation() {
           ) : (
             <p>
               {user.birthDate
-                ? new Date(user.birthDate).toLocaleDateString("fa-Ir")
+                ? new Date(user.birthDate).toLocaleDateString("en-US")
                 : "-"}
             </p>
           )}
@@ -147,9 +148,9 @@ function PersonalInformation() {
       {isEdit && (
         <div className={styles.control}>
           <button className="button-primary" type="submit">
-            افزودن
+            Add
           </button>
-          <button className="button-secondary" onClick={()=>setIsEdit(false)}>انصراف</button>
+          <button className="button-secondary" onClick={()=>setIsEdit(false)}>Cancel</button>
         </div>
       )}
     </form>

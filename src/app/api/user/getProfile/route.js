@@ -9,7 +9,7 @@ export async function GET() {
 
   if (!accessToken) {
     return NextResponse.json(
-      { message: "لطفا وارد حساب کاربری خود شوید" },
+      { message: "Please log in to your account." },
       { status: 401 }
     );
   }
@@ -22,7 +22,7 @@ export async function GET() {
   );
     if (res.status===401) {
       return NextResponse.json(
-        { message: "لطفا وارد حساب کاربری خود شوید" },
+        { message: "Please log in to your account." },
         { status: 401 }
       );
     }

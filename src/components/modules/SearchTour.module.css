@@ -10,6 +10,7 @@
   padding: 10px;
   display: flex;
   align-items: center;
+
   gap: 1rem;
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.15);
@@ -91,7 +92,7 @@
     border-radius: 0;
 }
 .comboContainer{
-      border-left: 1px solid rgba(0, 0, 0, 0.15);
+      border-right: 1px solid rgba(0, 0, 0, 0.15);
 
   }
 }

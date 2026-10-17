@@ -27,15 +27,15 @@ function WhyTorino() {
     <div className={styles.container}>
       <div className={styles.desc}>
         <h1>
-          چرا <span>تورینو</span>؟
+          Why <span>Torino</span>?
         </h1>
-        <h3>تور طبیعت گردی و تاریخی</h3>
+        <h3>Nature & Historical Tours</h3>
         <p>
-          اگر دوست داشته باشید که یک جاذبه طبیعی را از نزدیک ببینید و در دل
-          طبیعت چادر بزنید یا در یک اقامتگاه بوم گردی اتاق بگیرید، باید تورهای
-          طبیعت‌گردی را خریداری کنید. اما اگر بخواهید از جاذبه‌های گردشگری و
-          آثار تاریخی یک مقصد خاص بازدید کنید، می‌توانید تورهای فرهنگی و تاریخی
-          را خریداری کنید.
+          Whether you want to explore natural wonders, camp under the stars, or
+          stay in a traditional eco-lodge, our nature tours offer unforgettable
+          experiences. If you're interested in discovering cultural landmarks
+          and historical sites, our cultural and historical tours are the
+          perfect choice.
         </p>
       </div>
 
@@ -53,7 +53,7 @@ function WhyTorino() {
                   zIndex: images.length - Math.abs(position),
                 }}
               >
-                <Image src={img} fill alt="تورینو" />
+                <Image src={img} fill alt="Torino" />
               </div>
             );
           })}
@@ -64,14 +64,14 @@ function WhyTorino() {
             className="button-primary"
             onClick={handledecreasePictureNumber}
           >
-            بعدی
+            Previous
           </button>
-          <p>{toPersianNumbers(index + 1)}</p>
+          <p>{index + 1}</p>
           <button
             className="button-primary"
             onClick={handleIncreasePictureNumber}
           >
-            قبلی
+            Next
           </button>
         </div>
       </div>

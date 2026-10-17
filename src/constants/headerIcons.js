@@ -4,8 +4,8 @@ import HomeIcon from "@/public/icons/HomeIcon";
 import VolumeIcon from "@/public/icons/VolumeIcon";
 
 export const headerIcons = {
-  "صفحه اصلی": <HomeIcon />,
-  "خدمات گردشگری": <AirplainIcon />,
-  "درباره ما": <VolumeIcon />,
-  "تماس با ما": <CallIcon />,
+  Home: <HomeIcon />,
+  "Travel Services": <AirplainIcon />,
+  "About Us": <VolumeIcon />,
+  "Contact Us": <CallIcon />,
 };

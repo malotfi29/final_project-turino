@@ -6,6 +6,7 @@
 }
 .innerContainer {
   display: grid;
+  gap: 2rem;
   grid-template-rows: 300px repeat(4, 1fr);
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 10px;

@@ -12,7 +12,7 @@ try {
   return NextResponse.json(data);
 } catch (error) {
   return NextResponse.json(
-    { message: "خطا در برقراری ارتباط لطفا مجددا تلاش کنید" },
+    { message: "Connection error. Please try again." },
     { status: 500 }
   );
 }

@@ -25,7 +25,7 @@ export async function GET(req) {
     return NextResponse.json(data);
   } catch (error) {
     return NextResponse.json(
-      { message: "خطا در دریافت تورها" },
+      { message: "Failed to load tours." },
       { status: 500 }
     );
   }

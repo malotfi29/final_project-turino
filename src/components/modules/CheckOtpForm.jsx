@@ -58,7 +58,7 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
 <div>
 
     <form onSubmit={checkOtpHandler}>
-      <p>کد تایید به شماره {toPersianNumbers(mobile)} ارسال شد</p>
+    <p>Verification code sent to {mobile}</p>
 
       <OTPInput
         value={code}
@@ -76,13 +76,13 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
       />
       <div>
         {time > 0 ? (
-          <p> {time} ثانیه تا ارسال مجدد کد</p>
+          <p>{time} seconds until you can resend the code</p>
         ) : (
-          <p onClick={onResendHandler}>ارسال مجدد کد تایید</p>
+          <p onClick={onResendHandler}>Resend Verification Code</p>
         )}
       </div>
       
-      <button type="submit">ورود به تورینو</button>
+      <button type="submit">Log In to Torino</button>
       {/* {isPending ? <Loading /> : <button type="submit">ورود به تورینو</button>} */}
     </form>
      

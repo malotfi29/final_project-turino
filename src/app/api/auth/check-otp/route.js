@@ -11,7 +11,7 @@ export async function POST(req) {
 
   if (!res.ok) {
     return NextResponse.json(
-      { message: "کد وارد شده فاقد اعتبار می باشد" },
+      { message:"The entered code is invalid." },
       { status: 400 }
     );
   }

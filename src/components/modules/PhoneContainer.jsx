@@ -12,21 +12,21 @@ function PhoneContainer() {
         src="/images/professional-cartoon-man.png"
         width={1000}
         height={700}
-        alt="شماره تماس تورینو"
+        alt="Tourino Contact Number"
       />
       <p className={styles.up}>
-        خرید تلفنی از
-        <span> تورینو </span>
+      Book by Phone with
+        <span> Torino </span>
       </p>
-      <p className={styles.down}>به هرکجا که میخواهید!</p>
+      <p className={styles.down}>Wherever You Want to Go!</p>
     </div>
 
     <div className={styles.phone}>
       <p>
-        <span>{toPersianNumbers("021-1840")}</span>
+        <span>021-1840</span>
         <FillCallIcon />
       </p>
-      <button>اطلاعات بیشتر</button>
+      <button>More Information</button>
     </div>
   </div>
   )

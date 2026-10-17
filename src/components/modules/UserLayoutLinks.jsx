@@ -4,9 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { title: "پروفایل", href: "/profile" },
-  { title: "تورهای من", href: "/myTours" },
-  { title: "تراکنش ها", href: "/transactions" },
+  { title: "Profile", href: "/profile" },
+  { title: "My Tours", href: "/myTours" },
+  { title:"Transactions" , href: "/transactions" },
 ];
 
 function UserLayoutLinks() {

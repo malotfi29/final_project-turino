@@ -8,11 +8,11 @@ import toast from "react-hot-toast";
 import app from "@/services/httpService";
 import { toUTCStartOfDay } from "@/utils/toUTCStartOfDay";
 import ArrowDown from "@/public/icons/ArrowDown";
-import Skeleton from "@/ui/Skeleton";
 import SkeletonDots from "@/ui/Skeleton";
 
 function AllToures() {
   const [data, setData] = useState([]);
+  const [cityOptions, setCityOptions] = useState([]);
   const [moreTours, setMoreTours] = useState(false);
   const [search, setSearch] = useState({
     origin: "",
@@ -47,10 +47,18 @@ function AllToures() {
       }
 
       const res = await app.get(`/api/tour/get?${params.toString()}`);
+      if (
+        !search.origin?.id &&
+        !search.destination?.id &&
+        !search.value?.from &&
+        !search.value?.to
+      ) {
+        setCityOptions(res.data);
+      }
       const tours = moreTours ? res.data : res.data.slice(0, 4);
       setData(tours);
     } catch (error) {
-      toast.error("خطا در دریافت تورها");
+      toast.error("Failed to Load Tours");
     }
   }, [moreTours, search]);
 
@@ -62,26 +70,26 @@ function AllToures() {
     <div className={styles.container}>
       <div className={styles.search}>
         <h2>
-          <span>تورینو</span> برگزار کننده بهترین تور های داخلی و خارجی
+          <span>Torino</span> Your Gateway to Unforgettable Travel Experiences
         </h2>
         <SearchTour
-          data={data}
+          data={cityOptions}
           search={search}
           setSearch={setSearch}
           onSearch={() => fetchTours(search)}
         />
       </div>
-      <h2 className={styles.title}>همه ی تورها</h2>
+      <h2 className={styles.title}>All Tours</h2>
       <div className={styles.TouresContainer}>
         {!!data.length ? (
           data.map((tour) => <Tour tour={tour} key={tour.id} />)
         ) : (
-          <SkeletonDots/>
-          // <p>تور مورد نظر یافت نشد</p>
+          <SkeletonDots />
+         
         )}
       </div>
       <p className={styles.seeMore} onClick={() => setMoreTours((is) => !is)}>
-        {moreTours ? "بستن" : "مشاهده بیشتر"}
+        {moreTours ? "close" : "View More"}
         <span className={moreTours ? styles.arrow : ""}>
           <ArrowDown />
         </span>

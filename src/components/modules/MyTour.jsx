@@ -19,12 +19,13 @@ function MyTour({ tour }) {
     <div className={styles.container}>
       <div className={styles.desc}>
         <div>
-          <p>{tour.title}</p>
-          <p>سفر با {vehicles[tour.fleetVehicle]}</p>
+          <p className={styles.title}>{tour.title}</p>
+          <p>Transportation Type: <span className={styles.TransportationType}> {tour.fleetVehicle}</span> </p>
           <p>
-            {tour.origin.value} به {tour.destination.value}{" "}
-            <span>
-              {new Date(tour.startDate).toLocaleDateString("fa-IR", {
+            {tour.origin.value} to {tour.destination.value}
+            &nbsp; &nbsp; 
+            <span className={styles.date}>
+              {new Date(tour.startDate).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -33,9 +34,10 @@ function MyTour({ tour }) {
             </span>
           </p>
           <p>
-            تاریخ برگشت{" "}
-            <span>
-              {new Date(tour.endDate).toLocaleDateString("fa-IR", {
+          Return Date:
+          &nbsp;
+            <span className={styles.date}>
+              {new Date(tour.endDate).toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "long",
                 day: "numeric",
@@ -46,18 +48,18 @@ function MyTour({ tour }) {
         </div>
         <button className={tourDate<=now?"badge-success":"badge-pending"}>
           {
-            tourDate<=now?"به اتمام رسیده":"در حال برگزاری"
+            tourDate<=now?"Completed":"`In Progress`"
           }
         </button>
       </div>
       <div className={styles.price}>
         <p>
-          شماره تور <span>{toPersianNumbers(tour.id.slice(1, 8))}</span>
+          Tour number <span>{tour.id.slice(1, 8)}</span>
         </p>
         <p>
-          مبلغ پرداخت شده{" "}
+        Amount Paid
           <span>
-            {toPersianNumbersWithComma(tour.price)} <span>تومان</span>
+            {tour.price} <span>$</span>
           </span>
         </p>
       </div>
