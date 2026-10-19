@@ -20,17 +20,12 @@ export async function GET() {
       headers: { Authorization: `Bearer ${accessToken}` },
     }
   );
-    if (res.status===401) {
-      return NextResponse.json(
-        { message: "Please log in to your account." },
-        { status: 401 }
-      );
+    const data = await res.json();
+    if (!res.ok) {
+      return NextResponse.json(data, { status: res.status });
     }
 
-    
-    const user = await res.json();
-    
-    return NextResponse.json({ user });
+    return NextResponse.json({ user: data });
 
   } catch (error) {
     return NextResponse.json(

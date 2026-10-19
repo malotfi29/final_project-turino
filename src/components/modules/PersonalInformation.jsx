@@ -5,6 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import TextInput from "@/ui/TextInput";
 import { toPersianNumbers } from "@/utils/toPersionNumber";
 import { DatePicker } from "zaman";
+import { yupResolver } from "@hookform/resolvers/yup";
 
 function PersonalInformation() {
   const [isEdit, setIsEdit] = useState(false);
@@ -26,18 +27,45 @@ function PersonalInformation() {
     return `${year}-${month}-${day}`;
   };
 
+  // const editHandler = async (data) => {
+
+  //   try {
+  //     const [firstName, lastName] = data.name.split(" ");
+  //     const birthDate = formatToYMD(data.birthDate?.value);
+  //     const editedData = {
+  //       ...data,
+  //       firstName,
+  //       lastName,
+  //       birthDate,
+  //     };
+  //     delete editedData.name;
+  //     await editUser(editedData);
+  //     reset(data);
+  //     setIsEdit(false);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
   const editHandler = async (data) => {
- 
     try {
-      const [firstName, lastName] = data.name.split(" ");
+      const nameParts = data.name.trim().split(/\s+/);
+      const firstName = nameParts.shift();
+      const lastName = nameParts.join(" ");
+  
+      if (!firstName || !lastName) return;
+  
       const birthDate = formatToYMD(data.birthDate?.value);
+  
       const editedData = {
         ...data,
         firstName,
         lastName,
         birthDate,
       };
+  
       delete editedData.name;
+  
       await editUser(editedData);
       reset(data);
       setIsEdit(false);
@@ -50,19 +78,37 @@ function PersonalInformation() {
     <form className={styles.container} onSubmit={handleSubmit(editHandler)}>
       <div className={styles.title}>
         <h2>Personal Information</h2>
-        {!isEdit && <button  onClick={()=>setIsEdit(true)}>Edit</button>}
+        {!isEdit && <button onClick={() => setIsEdit(true)}>Edit</button>}
       </div>
       <div className={styles.innerContainer}>
         <div className={styles.inputContainer}>
           {!isEdit && <span>Full Name</span>}
 
           {isEdit ? (
+            // <TextInput
+            //   name="name"
+            //   register={register}
+            //   errors={errors}
+            //   placeholder="Full Name"
+            // />
             <TextInput
-              name="name"
-              register={register}
-              errors={errors}
-              placeholder="Full Name"
-            />
+  name="name"
+  register={(name) =>
+    register(name, {
+      required: "Full name is required.",
+      validate: (value) => {
+        const parts = value.trim().split(/\s+/).filter(Boolean);
+
+        return (
+          parts.length >= 2 ||
+          "Please enter both first and last name."
+        );
+      },
+    })
+  }
+  errors={errors}
+  placeholder="Full Name"
+/>
           ) : (
             <p>
               {user.firstName && user.lastName
@@ -110,12 +156,11 @@ function PersonalInformation() {
           )}
         </div>
         <div
-          className={`${styles.inputContainer } ${isEdit&&styles.birthDate}`}
+          className={`${styles.inputContainer} ${isEdit && styles.birthDate}`}
         >
           <span>Date of Birth</span>
 
           {isEdit ? (
-            
             <Controller
               control={control}
               name="birthDate"
@@ -135,7 +180,6 @@ function PersonalInformation() {
                 />
               )}
             />
-            
           ) : (
             <p>
               {user.birthDate
@@ -150,7 +194,9 @@ function PersonalInformation() {
           <button className="button-primary" type="submit">
             Add
           </button>
-          <button className="button-secondary" onClick={()=>setIsEdit(false)}>Cancel</button>
+          <button className="button-secondary" onClick={() => setIsEdit(false)}>
+            Cancel
+          </button>
         </div>
       )}
     </form>

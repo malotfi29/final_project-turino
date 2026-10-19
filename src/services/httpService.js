@@ -8,37 +8,34 @@ const app = axios.create({
 
 app.interceptors.response.use(
   (response) => response,
-
   async (error) => {
     const originalRequest = error.config;
+    const status = error.response?.status;
+
     if (
-      error.response?.status === 401 ||
-      (error.response?.status === 403 && !originalRequest._retry)
+      originalRequest &&
+      (status === 401 || status === 403) &&
+      !originalRequest._retry
     ) {
       originalRequest._retry = true;
 
       try {
-        const refreshResponse = await axios.post(
-          "/api/auth/refreshToken"
-          // {},
-          // { withCredentials: true }
-        );
-
-        if (refreshResponse.status === 200) {
-          return app(originalRequest);
-        }
+        await axios.post("/api/auth/refreshToken", {}, { withCredentials: true });
+        return app(originalRequest);
       } catch (refreshError) {
         return Promise.reject({
-          message: "لطفا وارد حساب کاربری خود شوید",
-          status: 401,
+          status: refreshError.response?.status || 401,
+          message:
+            refreshError.response?.data?.message ||
+            "Please log in to your account.",
         });
       }
     }
 
     return Promise.reject({
-      status: error.response?.status,
+      status,
       message:
-        error.response?.data?.message || error.message || "خطایی رخ داده است",
+        error.response?.data?.message || error.message || "Request failed.",
     });
   }
 );

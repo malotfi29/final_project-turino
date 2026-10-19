@@ -9,7 +9,7 @@ import app from "@/services/httpService";
 import { useRouter } from "next/navigation";
 import Skeleton from "@/ui/Skeleton";
 
-const RESEND_TIME = 90;
+const RESEND_TIME = 60;
 
 function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
   const router = useRouter();
@@ -71,6 +71,7 @@ function CheckOtpForm({ resendOtp, mobile, setOpenLogin }) {
           height: "45px",
           border: "1px solid rgba(0, 0, 0, 0.25)",
           borderRadius: "6px",
+          direction: "ltr",
         }}
         shouldAutoFocus
       />

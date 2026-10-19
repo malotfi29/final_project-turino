@@ -42,15 +42,6 @@ export async function POST() {
       maxAge: 7 * 24 * 60 * 60,
     });
 
-    response.cookies.set("refreshToken", refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "strict",
-      path: "/",
-      maxAge: 30 * 24 * 60 * 60,
-    });
-console.log(response);
-
     return response;
   } catch (error) {
     return NextResponse.json(

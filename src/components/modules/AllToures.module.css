@@ -2,10 +2,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 24px;
+ 
 }
 .TouresContainer p {
   font-size: 18px;
   font-weight: 400;
+  width: 100%;
+  text-align: center;
+ color: gray;
+ padding: 2rem;
 }
 
 .search {

@@ -84,16 +84,22 @@ function AllToures() {
         {!!data.length ? (
           data.map((tour) => <Tour tour={tour} key={tour.id} />)
         ) : (
-          <SkeletonDots />
-         
+          <p className={styles.notour}>
+            No tours found matching your selected criteria. Please adjust your
+            filters and try again.
+          </p>
         )}
       </div>
-      <p className={styles.seeMore} onClick={() => setMoreTours((is) => !is)}>
-        {moreTours ? "close" : "View More"}
-        <span className={moreTours ? styles.arrow : ""}>
-          <ArrowDown />
-        </span>
-      </p>
+      {!!data.length ? (
+        <p className={styles.seeMore} onClick={() => setMoreTours((is) => !is)}>
+          {moreTours ? "close" : "View More"}
+          <span className={moreTours ? styles.arrow : ""}>
+            <ArrowDown />
+          </span>
+        </p>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

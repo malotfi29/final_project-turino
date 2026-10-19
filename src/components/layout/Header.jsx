@@ -32,6 +32,8 @@ function Header() {
         <HamburgerDropDown setShowMenu={setShowMenu} showMenu={showMenu} />
       </div>
       <div className={styles.menu}>
+        <Link href="/">
+       
         <Image
           className={styles.img}
           src="/images/Torino.png"
@@ -40,6 +42,7 @@ function Header() {
           height={700}
           alt="Torino"
         />
+         </Link>
         <ul>
           {links.map((link, index) => (
             <li key={index}>
