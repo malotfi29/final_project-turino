@@ -1,4 +1,4 @@
-import { yekan } from "@/utils/fonts";
+
 import "./globals.css";
 import Layout from "@/layout/Layout";
 import { Toaster } from "react-hot-toast";
