@@ -62,14 +62,14 @@ function WhyTorino() {
         <div className={styles.controls}>
           <button
             className="button-primary"
-            onClick={handledecreasePictureNumber}
+            onClick={handleIncreasePictureNumber}
           >
             Previous
           </button>
           <p>{index + 1}</p>
           <button
             className="button-primary"
-            onClick={handleIncreasePictureNumber}
+            onClick={handledecreasePictureNumber}
           >
             Next
           </button>

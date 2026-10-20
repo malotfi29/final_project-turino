@@ -18,23 +18,28 @@ import Secure from "@/public/icons/Secure";
 import app from "@/services/httpService";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import LoginModal from "@/modules/LoginModal";
 
 
 
 function TourDetailsPage({ data }) {
+  const [openLogin, setOpenLogin] = useState(false);
   const duration = getDuration(data?.startDate, data?.endDate);
   const router = useRouter();
 
   const handleBookingTour = async () => {
     try {
       const res = await app.put("/api/tour/booking", data.id);
-
+      
       if (res.status === 200) {
         toast.success(res.data.data.message, { style: { fontSize: "14px" } });
         router.push("/registration");
       }
     } catch (error) {
-      toast.error(error.message, { style: { fontSize: "14px" } });
+     console.log(error);
+    //  toast.error(error.message, { style: { fontSize: "14px" } });
+     if(error.status===401) setOpenLogin(true)
     }
   };
 
@@ -136,6 +141,7 @@ function TourDetailsPage({ data }) {
             <span>{(data.price)}</span>$
           </p>
           <button onClick={handleBookingTour}>Book Now</button>
+      <LoginModal openLogin={openLogin} setOpenLogin={setOpenLogin}/>
         </div>
       </div>
     </div>
