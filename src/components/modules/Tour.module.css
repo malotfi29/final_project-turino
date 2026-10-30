@@ -1,65 +1,116 @@
 .tour {
-  width: 100%;
-  max-width: 500px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  border-radius: 10px;
+  min-width: 0;
   overflow: hidden;
+  border: 1px solid #e1e6e9;
+  border-radius: 1.6rem;
+  background: #fff;
+  box-shadow: 0 0.4rem 1.2rem rgba(20, 41, 58, 0.05);
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.tour:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 1rem 2.4rem rgba(20, 41, 58, 0.12);
+}
+
+.cardLink { display: block; color: inherit; }
+
+.imageWrap {
+  position: relative;
+  aspect-ratio: 1.42;
+  overflow: hidden;
+  background: #edf1f2;
 }
 
 .tourImg {
-  width: 100%;
-  height: auto;
-}
-.desc {
-  padding: 0.5rem 1rem;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  object-fit: cover;
+  transition: transform 0.35s ease;
 }
 
-.desc .title {
-  font-size: 22px;
-  font-weight: 400;
-  color: rgba(0, 0, 0, 1);
+.tour:hover .tourImg { transform: scale(1.04); }
+
+.destination {
+  position: absolute;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  max-width: calc(100% - 2.4rem);
+  overflow: hidden;
+  padding: 0.6rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #18334d;
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.desc div {
+
+.desc { padding: 1.5rem 1.6rem 1rem; }
+
+.route {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.7rem;
+  color: #64768a;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.route span { color: #16804c; }
+
+.desc h3 {
+  display: -webkit-box;
+  min-height: 4.6rem;
+  overflow: hidden;
+  color: #17314a;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.45;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.tripInfo {
   display: flex;
   align-items: center;
-  gap: 2px;
-  font-size: 14px;
+  gap: 0.7rem;
+  margin-top: 1rem;
+  color: #596b7e;
+  font-size: 1.3rem;
   font-weight: 400;
-  color: rgba(40, 40, 40, 0.7);
 }
+
+.tripInfo span { color: #98a5af; }
+.options { margin-top: 0.8rem; color: #758392; font-size: 1.2rem; font-weight: 400; }
+
 .tourFooter {
-  width: 100%;
-  padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.tourFooter button {
-  background-color: var(--color-primary);
-  color: white;
-  padding: 6px 18px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-.tourFooter button:hover{
-  background-color: var(--color-secondary);
-  color: var(--color-primary);
-  transform: scale(1.01);
-  border: 2px solid var(--color-primary);
-}
-.tourFooter p{
-    font-size: 12px;
-}
-.tourFooter p span{
-    font-weight: 500;
-    font-size: 14px;
-    color: rgb(109, 146, 238);
+  gap: 1rem;
+  padding: 1.2rem 1.6rem 1.6rem;
+  border-top: 1px solid #edf0f2;
 }
 
-/* @media screen and (min-width:768px) {
-    .tourImg{
-        width: 25rem;
-    }
-} */
+.price { display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.4rem; }
+.price span { color: #6e7c8a; font-size: 1.1rem; font-weight: 400; }
+.price strong { color: #17314a; font-size: 1.8rem; font-weight: 700; }
+
+.bookLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #16804c;
+  font-size: 1.3rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.bookLink:hover { color: #105f39; }
+
+@media (max-width: 600px) {
+  .desc { padding: 1.3rem 1.4rem 0.9rem; }
+  .tourFooter { padding: 1.1rem 1.4rem 1.4rem; }
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import styles from "./AllToures.module.css";
 import SearchTour from "./SearchTour";
 import Tour from "./Tour";
@@ -11,6 +11,7 @@ import ArrowDown from "@/public/icons/ArrowDown";
 import SkeletonDots from "@/ui/Skeleton";
 
 function AllToures() {
+  const toursRef = useRef(null);
   const [data, setData] = useState([]);
   const [cityOptions, setCityOptions] = useState([]);
   const [moreTours, setMoreTours] = useState(false);
@@ -67,11 +68,8 @@ function AllToures() {
   }, [moreTours]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id="tours">
       <div className={styles.search}>
-        <h2>
-          <span>Torino</span> Your Gateway to Unforgettable Travel Experiences
-        </h2>
         <SearchTour
           data={cityOptions}
           search={search}
@@ -79,27 +77,35 @@ function AllToures() {
           onSearch={() => fetchTours(search)}
         />
       </div>
-      <h2 className={styles.title}>All Tours</h2>
-      <div className={styles.TouresContainer}>
+      <section className={styles.toursSection} aria-labelledby="all-tours-title">
+        <div className={styles.sectionHeading}>
+          <div>
+            <p className={styles.sectionEyebrow}>FIND YOUR NEXT EXPERIENCE</p>
+            <h2 className={styles.title} id="all-tours-title">All Tours</h2>
+          </div>
+        </div>
+        <div
+          className={`${styles.TouresContainer} ${moreTours ? styles.expandedTours : ""}`}
+          ref={toursRef}
+        >
+          {!!data.length ? (
+            data.map((tour) => <Tour tour={tour} key={tour.id} />)
+          ) : (
+            <p className={styles.notour}>
+              No tours found matching your selected criteria. Please adjust your
+              filters and try again.
+            </p>
+          )}
+        </div>
         {!!data.length ? (
-          data.map((tour) => <Tour tour={tour} key={tour.id} />)
+          <button className={styles.seeMore} type="button" onClick={() => setMoreTours((is) => !is)}>
+            {moreTours ? "Show Less" : "Show More"}
+            <span className={moreTours ? styles.arrow : ""}><ArrowDown /></span>
+          </button>
         ) : (
-          <p className={styles.notour}>
-            No tours found matching your selected criteria. Please adjust your
-            filters and try again.
-          </p>
+          ""
         )}
-      </div>
-      {!!data.length ? (
-        <p className={styles.seeMore} onClick={() => setMoreTours((is) => !is)}>
-          {moreTours ? "close" : "View More"}
-          <span className={moreTours ? styles.arrow : ""}>
-            <ArrowDown />
-          </span>
-        </p>
-      ) : (
-        ""
-      )}
+      </section>
     </div>
   );
 }

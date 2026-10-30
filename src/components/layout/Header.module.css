@@ -1,112 +1,52 @@
 .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 5rem;
-  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.16);
-}
-
-.header .icons {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.header .menu {
-  display: flex;
-  align-items: center;
-  gap: 5rem;
-  display: none;
-}
-.header .img {
-  width: 10rem;
-  height: 3rem;
-}
-
-.header ul {
-  display: flex;
-  list-style: none;
-  align-items: center;
-  gap: 4rem;
-}
-
-.header ul li a {
-  font-size: 14px;
-  color: var(--color-text-primary);
-  display: block;
-  transition: color 0.2s ease;
-}
-
-.header .webButton {
-  align-items: center;
-
-  gap: 4px;
-  display: none;
-}
-.header button span {
-  font-size: 12px;
-}
-.header .mobileButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.header .userMobile {
-  color: var(--color-primary);
-  font-size: 14px;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  cursor: pointer;
-}
-.openArrow {
-  display: flex;
-  align-items: center;
-  transition: transform 0.3s ease;
-}
-.arrow {
-  transform: rotate(180deg);
-}
-
-.mobileContainer {
   position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 8rem;
+  gap: 2rem;
+  padding: 1rem clamp(1.6rem, 5vw, 8rem);
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(16, 37, 57, 0.12);
 }
 
-@media screen and (min-width: 768px) {
-  .header .icons {
-    display: none;
-  }
-  .header .menu,
-  .header .webButton {
-    display: flex;
-  }
-  .header .mobileButton {
-    display: none;
-  }
-  .header ul li a:hover {
-    color: var(--color-primary);
-  }
-  .header .userMobile {
-    font-size: 18px;
-  }
+.icons { display: flex; align-items: center; }
+.menuToggle { display: inline-flex; align-items: center; padding: 0.5rem; background: transparent; cursor: pointer; }
+.menu { display: flex; align-items: center; flex: 1; gap: clamp(2rem, 5vw, 7rem); }
+.img { display: block; width: 14rem; height: 4.4rem; object-fit: contain; }
+.menu .desktopLinks { display: none; align-items: center; gap: clamp(1.6rem, 3vw, 4rem); padding: 0; list-style: none; }
+.menu ul li a { display: block; color: #243c58; font-size: 1.5rem; font-weight: 500; white-space: nowrap; transition: color 0.2s ease; }
+.menu ul li a:hover { color: var(--color-primary); }
+.quickLinks { display: flex; align-items: center; gap: 1.2rem; }
+.iconLink { display: grid; width: 3.8rem; height: 3.8rem; place-items: center; color: #203954; }
+.iconLink + .iconLink { border-left: 1px solid #e4e8ed; padding-left: 1.2rem; box-sizing: content-box; }
+.iconLink svg { width: 2.2rem; height: 2.2rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.webButton { display: none; align-items: center; gap: 0.7rem; white-space: nowrap; }
+.header button span { font-size: 1.2rem; }
+.mobileButton { display: flex; align-items: center; justify-content: center; }
+.userMobile { display: flex; align-items: center; gap: 0.5rem; color: var(--color-primary); font-size: 1.4rem; cursor: pointer; }
+.openArrow { display: flex; align-items: center; transition: transform 0.3s ease; }
+.arrow { transform: rotate(180deg); }
+.mobileContainer { position: relative; }
+
+@media (min-width: 768px) {
+  .menuToggle { display: none; }
+  .menu .desktopLinks { display: flex; }
+  .webButton { display: flex; }
+  .mobileButton { display: none; }
+  .header button span { font-size: 1.4rem; }
 }
 
-@media screen and (min-width: 1024px) {
-  .header {
-    padding: 1rem 10rem;
-  }
-  .header .img {
-    width: 14.6rem;
-    height: 4.4rem;
-  }
-  .header ul a {
-    font-size: 16px;
-  }
-  .header .menu {
-    gap: 10rem;
-  }
-  .header button span {
-    font-size: 14px;
-  }
+@media (max-width: 767px) {
+  .header { min-height: 7rem; gap: 1rem; padding: 0.8rem 1.6rem; }
+  .menu { flex: 0 1 auto; gap: 0.8rem; }
+  .img { width: 10.8rem; height: 3.5rem; }
+  .quickLinks { gap: 0.3rem; }
+  .iconLink { width: 3.2rem; height: 3.4rem; }
+  .iconLink + .iconLink { padding-left: 0.4rem; }
+}
+
+@media (min-width: 1200px) {
+  .header { padding-right: max(5vw, calc((100vw - 1500px) / 2)); padding-left: max(5vw, calc((100vw - 1500px) / 2)); }
 }

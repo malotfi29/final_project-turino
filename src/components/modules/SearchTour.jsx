@@ -57,7 +57,7 @@ function SearchTour({ data, search, setSearch, onSearch }) {
         />
       </div>
       <div className={styles.showDateBtn} ref={wrapperRef}>
-        <button onClick={() => setShowDate((is) => !is)}>
+        <button type="button" aria-label="Select travel dates" onClick={() => setShowDate((is) => !is)}>
           <CalenderIcon />
 
           <span>
@@ -95,7 +95,8 @@ function SearchTour({ data, search, setSearch, onSearch }) {
           </div>
         ) : null}
       </div>
-      <button className={styles.searchBtn} onClick={onSearch}>
+      <button type="button" className={styles.searchBtn} onClick={onSearch}>
+        <SearchIcon />
         Search
       </button>
     </div>

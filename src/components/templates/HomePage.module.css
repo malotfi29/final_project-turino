@@ -1,32 +1,92 @@
-.container .banner {
+.container {
   width: 100%;
-  height: clamp(11rem, 20%, 35rem);
+  overflow: hidden;
 }
 
-.input {
-  width: 100%;
-  border: 1px solid red;
-}
-
-
-.toures {
+.hero {
+  position: relative;
+  min-height: clamp(48rem, 54vw, 66rem);
   display: flex;
-  flex-direction: column;
-  padding: 2rem;
-  margin: auto;
-  max-width: 1200px;
-  justify-content: center;
+  align-items: flex-start;
+  background-image: linear-gradient(90deg, rgba(255, 246, 226, 0.56), rgba(255, 246, 226, 0.08) 63%), url("/images/istanbul-hero-clean.jpg");
+  background-position: center 48%;
+  background-size: cover;
+}
+
+.heroContent {
+  width: min(1200px, calc(100% - 4rem));
+  margin: 0 auto;
+  padding-top: clamp(8rem, 9vw, 14rem);
+}
+
+.eyebrow {
+  color: #304761;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  margin-bottom: 2rem;
+}
+
+.heroContent h1 {
+  max-width: 70rem;
+  color: #142c49;
+  font-size: clamp(4rem, 6vw, 7.2rem);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.035em;
+}
+
+.heroContent h1 span {
+  display: block;
+  color: #197b4b;
+  font-weight: 700;
+}
+
+.description {
+  max-width: 57rem;
+  margin-top: 2rem;
+  color: #405674;
+  font-size: clamp(1.6rem, 2vw, 2rem);
+  font-weight: 400;
+  line-height: 1.6;
 }
 
 .whyTorino {
-  padding: 2rem;
-  margin: auto;
   max-width: 1200px;
+  margin: auto;
+  padding: 2rem;
 }
 
 .footer {
-  border-top: 1px solid rgba(0, 0, 0, 0.25);
-  margin: auto;
   display: flex;
   align-items: center;
+  margin: auto;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 767px) {
+  .hero {
+    min-height: 62rem;
+    background-position: 60% center;
+  }
+
+  .heroContent {
+    width: calc(100% - 4rem);
+    padding-top: 7rem;
+  }
+
+  .eyebrow {
+    font-size: 1.1rem;
+    letter-spacing: 0.18em;
+  }
+
+  .heroContent h1 {
+    max-width: 48rem;
+    font-size: clamp(4rem, 11vw, 5.5rem);
+  }
+
+  .description {
+    max-width: 44rem;
+    font-size: 1.6rem;
+  }
 }

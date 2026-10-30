@@ -6,6 +6,7 @@ import VolumeIcon from "@/public/icons/VolumeIcon";
 export const headerIcons = {
   Home: <HomeIcon />,
   "Travel Services": <AirplainIcon />,
+  "Travel Destinations": <AirplainIcon />,
   "About Us": <VolumeIcon />,
   "Contact Us": <CallIcon />,
 };

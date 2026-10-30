@@ -1,32 +1,34 @@
-import Image from "next/image";
 import styles from "./HomePage.module.css";
 import AllToures from "@/modules/AllToures";
 import PhoneContainer from "@/modules/PhoneContainer";
 import WhyTorino from "@/modules/WhyTorino";
 import Footer from "@/modules/Footer";
 
-async function HomePage() {
+function HomePage() {
   return (
-    <div className={styles.container}>
-      <Image
-        className={styles.banner}
-        src="/images/banner.webp"
-        width={1000}
-        height={700}
-        alt="banner"
-      />
+    <main className={styles.container}>
+      <section className={styles.hero} aria-labelledby="hero-title">
+        <div className={styles.heroContent}>
+          <p className={styles.eyebrow}>EXPLORE • DISCOVER • EXPERIENCE</p>
+          <h1 id="hero-title">
+            Your Next Adventure <span>Starts Here</span>
+          </h1>
+          <p className={styles.description}>
+            Discover amazing destinations, unforgettable experiences and create
+            memories that last a lifetime.
+          </p>
+        </div>
+      </section>
 
-      <div className={styles.toures}>
-        <AllToures />
-      </div>
+      <AllToures />
       <PhoneContainer />
-      <div className={styles.whyTorino}>
+      <section className={styles.whyTorino} id="features">
         <WhyTorino />
-      </div>
-      <div className={styles.footer}>
+      </section>
+      <footer className={styles.footer} id="contact">
         <Footer />
-      </div>
-    </div>
+      </footer>
+    </main>
   );
 }
 

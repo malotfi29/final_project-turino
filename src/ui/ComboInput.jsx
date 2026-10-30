@@ -40,6 +40,7 @@ function ComboInput({ data, label, value, onChange }) {
       <Combobox value={value} onChange={onChange}>
         <ComboboxInput
           className={styles.comboInput}
+          aria-label={label}
           displayValue={(city) => city?.value}
           onChange={(event) => setQuery(event.target.value)}
           placeholder={label}

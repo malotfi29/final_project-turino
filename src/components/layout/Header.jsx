@@ -23,11 +23,17 @@ function Header() {
 
 
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <div className={styles.icons}>
-        <span onClick={() => setShowMenu((is) => !is)}>
+        <button
+          className={styles.menuToggle}
+          type="button"
+          aria-label={showMenu ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={showMenu}
+          onClick={() => setShowMenu((is) => !is)}
+        >
           <HamburgerMenuIcon />
-        </span>
+        </button>
 
         <HamburgerDropDown setShowMenu={setShowMenu} showMenu={showMenu} />
       </div>
@@ -43,13 +49,21 @@ function Header() {
           alt="Torino"
         />
          </Link>
-        <ul>
+        <ul className={styles.desktopLinks}>
           {links.map((link, index) => (
             <li key={index}>
               <Link href={link.href}>{link.text}</Link>
             </li>
           ))}
         </ul>
+      </div>
+      <div className={styles.quickLinks}>
+        <Link href="/#tours" aria-label="Search tours" className={styles.iconLink}>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 5 5"/></svg>
+        </Link>
+        <Link href="/myTours" aria-label="My tours" className={styles.iconLink}>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 8.8c0 5.1-8.8 11-8.8 11s-8.8-5.9-8.8-11a4.7 4.7 0 0 1 8.8-2.2 4.7 4.7 0 0 1 8.8 2.2Z"/></svg>
+        </Link>
       </div>
       {!!user ? (
         <div className={styles.mobileContainer}>
@@ -89,7 +103,7 @@ function Header() {
       )}
 
       <LoginModal openLogin={openLogin} setOpenLogin={setOpenLogin} />
-    </div>
+    </header>
   );
 }
 
